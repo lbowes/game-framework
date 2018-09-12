@@ -1,7 +1,7 @@
 #include "RigidBody.h"
 
 RigidBody::RigidBody(Integrator integrator) :
-			mIntegrator(integrator)
+	mIntegrator(integrator)
 { }
 
 glm::dvec3 RigidBody::getAccel_world() const {

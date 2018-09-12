@@ -53,8 +53,8 @@ public:
 	virtual ~RigidBody() = default;
 
 	void setIntegrator(Integrator m) { mIntegrator = m; }
-	State& mutableState() { return mState; }
-	const State& immutableState() const { return mState; }
+	State& getState() { return mState; }
+	const State& getState() const { return mState; }
 	glm::dvec3 getAccel_world() const;
 	glm::dvec3 getAccelAtLocalPoint_world(glm::dvec3 position_local) const;
 

@@ -52,7 +52,7 @@ void RigidBodyGroup::updateCombinedMass_local() {
 
 	for (SubBody& sub : mSubBodies) {
 		if (sub.mConnected) {
-			const Mass& subMass_sub = sub.mRigidBody->immutableState().getMass_local();
+			const Mass& subMass_sub = sub.mRigidBody->mState.getMass_local();
 			glm::dvec3 subCentreMass_group = sub.mSubToComposite.toParentSpace(subMass_sub.getCentre());
 			combined += Mass(subMass_sub.getValue(), subCentreMass_group);
 		}
@@ -71,7 +71,7 @@ void RigidBodyGroup::updateCombinedInertia_local() {
 
 	for (SubBody& sub : mSubBodies) {
 		if (sub.mConnected) {
-			const State& subState = sub.mRigidBody->immutableState();
+			const State& subState = sub.mRigidBody->mState;
 			InertiaTensor rotatedSub = subState.getInertiaTensor_local().afterRotation(sub.mSubToComposite.getLocalToParent_rotation());
 			combinedInertia += InertiaTensor::parallelAxis(
 				rotatedSub,
@@ -111,7 +111,7 @@ void RigidBodyGroup::updateAllSubStates()
 void RigidBodyGroup::updateSubState(SubBody& toUpdate) {
 	using namespace glm;
 
-	State& subState = toUpdate.mRigidBody->mutableState();
+	State& subState = toUpdate.mRigidBody->mState;
 
 	//Regardless of update depth, all sub bodies must be given a position_world and orientation_world each update
 	//Position
