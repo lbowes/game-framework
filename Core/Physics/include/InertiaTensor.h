@@ -8,7 +8,7 @@
 		
 class InertiaTensor {
 private:
-	glm::dmat3 mInternal;
+	glm::dmat3 mInternal = glm::mat3(1.0f);
 
 public:
 	InertiaTensor(); //Point mass                            

@@ -1,7 +1,9 @@
 #include "State.h"
 
+#include <iostream>
+
 void State::operator=(const State& other) {
-	this->mCMPosition_world = other.mCMPosition_world;
+	this->mCoMPosition_world = other.mCoMPosition_world;
 	this->mMomentum_world = other.mMomentum_world;
 	this->mAngularMomentum_world = other.mAngularMomentum_world;
 	this->mOrientation_world = other.mOrientation_world;
@@ -14,7 +16,7 @@ void State::operator=(const State& other) {
 }
 
 void State::reset() {
-	mCMPosition_world = glm::dvec3(0.0);
+	mCoMPosition_world = glm::dvec3(0.0);
 	mMomentum_world = glm::dvec3(0.0);
 	mAngularMomentum_world = glm::dvec3(0.0);
 	mOrientation_world = glm::dquat(glm::vec3(0.0));
@@ -36,8 +38,13 @@ glm::dvec3 State::velocityAtLocalPoint_world(glm::dvec3 position_local) const {
 }
 
 void State::setPosition_world(glm::dvec3 newPosition_world) {
-	mCMPosition_world = newPosition_world + mObjectSpace.toParentSpace_rotation(mMass_local.getCentre());
-	mObjectSpace.setLocalToParent_position(newPosition_world);
+	mCoMPosition_world = newPosition_world + mObjectSpace.toParentSpace_rotation(mMass_local.getCentre());
+	mObjectSpace.setLocalToParent_translation(newPosition_world);
+}
+
+void State::setCoMPosition_world(glm::dvec3 newCoMPosition_world) {
+	mCoMPosition_world = newCoMPosition_world;
+	mObjectSpace.setLocalToParent_translation(newCoMPosition_world - mObjectSpace.toParentSpace_rotation(mMass_local.getCentre()));
 }
 
 void State::setMomentum_world(glm::dvec3 newMomentum_world) {
@@ -77,7 +84,7 @@ void State::setAngularVelocity_world(glm::dvec3 newAngularVelocity_world) {
 void State::setInertiaTensor_local(InertiaTensor newInertiaTensor_local) {
 	mInertiaTensor_local = newInertiaTensor_local;
 	
-	if (newInertiaTensor_local != glm::dmat3(0.0))
+	if (newInertiaTensor_local != glm::dmat3(0.0) && mOrientation_world != glm::dquat())
 		mAngularVelocity_world = mOrientation_world * (mInertiaTensor_local.inverse() * (inverse(mOrientation_world) * mAngularMomentum_world));
 }
 
@@ -96,10 +103,10 @@ void State::setMassValue_local(double newMassValue_local) {
 void State::setMassCentre_local(glm::dvec3 newMassCentre_local) {
 	updateCoordSpace3D();
 	mMass_local.setCentre(newMassCentre_local);
-	mCMPosition_world = mObjectSpace.toParentSpace(newMassCentre_local);
+	mCoMPosition_world = mObjectSpace.toParentSpace(newMassCentre_local);
 }
 
-void State::setObjectToParentTransform(GF::CoordTransform3D objectToParent) {
+void State::setObjectToParentTransform(CoordTransform3D objectToParent) {
 	mObjectSpace = objectToParent;
 
 	setPosition_world(objectToParent.toParentSpace());
@@ -113,7 +120,7 @@ void State::recalcSecondaryProps() {
 		mVelocity_world = mMomentum_world / mass;
 
 	//Angular velocity
-	if (mInertiaTensor_local.getInternal() != glm::dmat3(0.0))
+	if (mInertiaTensor_local.getInternal() != glm::dmat3(0.0) && mOrientation_world != glm::dquat())
 		mAngularVelocity_world = mOrientation_world * (mInertiaTensor_local.inverse() * (inverse(mOrientation_world) * mAngularMomentum_world));
 
 	//Spin
@@ -126,6 +133,6 @@ void State::recalcSecondaryProps() {
 }
 
 void State::updateCoordSpace3D() {
-	mObjectSpace.setLocalToParent_position(mCMPosition_world - mObjectSpace.toParentSpace_rotation(mMass_local.getCentre()));
+	mObjectSpace.setLocalToParent_translation(mCoMPosition_world - mObjectSpace.toParentSpace_rotation(mMass_local.getCentre()));
 	mObjectSpace.setLocalToParent_rotation(glm::toMat4(mOrientation_world));
 }

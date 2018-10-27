@@ -22,6 +22,15 @@ public:
 		mRestLength(restLength)
 	{ }
 
+	void operator=(const Spring& other) {
+		mK = other.mK;
+		mDampingCoefficient = other.mDampingCoefficient;
+		mRestLength = other.mRestLength;
+		mLength = other.mLength;
+		mForce = other.mForce;
+		mCompressionRate = other.mCompressionRate;
+	}
+
 	~Spring() = default;
 
 	void update(double length, double compressionRate) {
@@ -37,6 +46,7 @@ public:
 	double getForce() const { return mForce; }
 	double getRestLength() const { return mRestLength; }
 	double getCurrentLength() const { return mLength; }
+	double getCompressionRate() const { return mCompressionRate; }
 
 };
 

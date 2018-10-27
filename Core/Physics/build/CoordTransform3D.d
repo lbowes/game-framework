@@ -1,7 +1,7 @@
-build/RigidBodyGroup.o: src/RigidBodyGroup.cpp /usr/include/stdc-predef.h \
- include/RigidBodyGroup.h include/RigidBody.h include/State.h \
- include/InertiaTensor.h /usr/include/glm/mat3x3.hpp \
- /usr/include/glm/detail/setup.hpp /usr/include/c++/7/cassert \
+build/CoordTransform3D.o: src/CoordTransform3D.cpp \
+ /usr/include/stdc-predef.h include/CoordTransform3D.h \
+ /usr/include/glm/mat4x4.hpp /usr/include/glm/detail/setup.hpp \
+ /usr/include/c++/7/cassert \
  /usr/include/x86_64-linux-gnu/c++/7/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/os_defines.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -51,7 +51,7 @@ build/RigidBodyGroup.o: src/RigidBodyGroup.cpp /usr/include/stdc-predef.h \
  /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h \
  /usr/include/alloca.h /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/c++/7/bits/std_abs.h \
- /usr/include/glm/detail/type_mat3x3.hpp /usr/include/glm/fwd.hpp \
+ /usr/include/glm/detail/type_mat4x4.hpp /usr/include/glm/fwd.hpp \
  /usr/include/glm/detail/type_int.hpp /usr/include/glm/detail/setup.hpp \
  /usr/include/c++/7/type_traits /usr/include/c++/7/cstdint \
  /usr/lib/gcc/x86_64-linux-gnu/7/include/stdint.h /usr/include/stdint.h \
@@ -63,31 +63,30 @@ build/RigidBodyGroup.o: src/RigidBodyGroup.cpp /usr/include/stdc-predef.h \
  /usr/include/glm/detail/compute_vector_relational.hpp \
  /usr/include/c++/7/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/c++/7/limits /usr/include/glm/detail/type_mat.hpp \
- /usr/include/glm/detail/type_vec3.hpp \
- /usr/include/glm/detail/type_vec3.inl \
- /usr/include/glm/detail/type_mat3x3.inl /usr/include/glm/matrix.hpp \
+ /usr/include/glm/detail/type_vec4.hpp \
+ /usr/include/glm/detail/type_vec4.inl \
+ /usr/include/glm/detail/type_vec4_simd.inl \
+ /usr/include/glm/detail/type_mat4x4.inl /usr/include/glm/matrix.hpp \
  /usr/include/glm/vec2.hpp /usr/include/glm/detail/type_vec2.hpp \
  /usr/include/glm/detail/type_vec2.inl /usr/include/glm/vec3.hpp \
- /usr/include/glm/vec4.hpp /usr/include/glm/detail/type_vec4.hpp \
- /usr/include/glm/detail/type_vec4.inl \
- /usr/include/glm/detail/type_vec4_simd.inl /usr/include/glm/mat2x2.hpp \
- /usr/include/glm/detail/type_mat2x2.hpp \
+ /usr/include/glm/detail/type_vec3.hpp \
+ /usr/include/glm/detail/type_vec3.inl /usr/include/glm/vec4.hpp \
+ /usr/include/glm/mat2x2.hpp /usr/include/glm/detail/type_mat2x2.hpp \
  /usr/include/glm/detail/type_mat2x2.inl /usr/include/glm/mat2x3.hpp \
  /usr/include/glm/detail/type_mat2x3.hpp \
  /usr/include/glm/detail/type_mat2x3.inl /usr/include/glm/mat2x4.hpp \
  /usr/include/glm/detail/type_mat2x4.hpp \
  /usr/include/glm/detail/type_mat2x4.inl /usr/include/glm/mat3x2.hpp \
  /usr/include/glm/detail/type_mat3x2.hpp \
- /usr/include/glm/detail/type_mat3x2.inl /usr/include/glm/mat3x4.hpp \
+ /usr/include/glm/detail/type_mat3x2.inl /usr/include/glm/mat3x3.hpp \
+ /usr/include/glm/detail/type_mat3x3.hpp \
+ /usr/include/glm/detail/type_mat3x3.inl /usr/include/glm/mat3x4.hpp \
  /usr/include/glm/detail/type_mat3x4.hpp \
  /usr/include/glm/detail/type_mat3x4.inl /usr/include/glm/mat4x2.hpp \
  /usr/include/glm/detail/type_mat4x2.hpp \
  /usr/include/glm/detail/type_mat4x2.inl /usr/include/glm/mat4x3.hpp \
  /usr/include/glm/detail/type_mat4x3.hpp \
- /usr/include/glm/detail/type_mat4x3.inl /usr/include/glm/mat4x4.hpp \
- /usr/include/glm/detail/type_mat4x4.hpp \
- /usr/include/glm/detail/type_mat4x4.inl \
- /usr/include/glm/detail/type_mat4x4_simd.inl \
+ /usr/include/glm/detail/type_mat4x3.inl \
  /usr/include/glm/detail/func_matrix.inl /usr/include/glm/geometric.hpp \
  /usr/include/glm/detail/func_geometric.inl \
  /usr/include/glm/exponential.hpp /usr/include/glm/detail/type_vec1.hpp \
@@ -148,11 +147,10 @@ build/RigidBodyGroup.o: src/RigidBodyGroup.cpp /usr/include/stdc-predef.h \
  /usr/include/glm/detail/func_geometric_simd.inl \
  /usr/include/glm/simd/geometric.h \
  /usr/include/glm/detail/func_matrix_simd.inl \
- /usr/include/glm/simd/matrix.h /usr/include/glm/gtc/matrix_inverse.hpp \
- /usr/include/glm/detail/setup.hpp \
- /usr/include/glm/gtc/matrix_inverse.inl include/Mass.h \
- include/CoordTransform3D.h /usr/include/glm/gtx/transform.hpp \
- /usr/include/glm/glm.hpp /usr/include/c++/7/climits \
+ /usr/include/glm/simd/matrix.h \
+ /usr/include/glm/detail/type_mat4x4_simd.inl \
+ /usr/include/glm/gtx/transform.hpp /usr/include/glm/glm.hpp \
+ /usr/include/c++/7/climits \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
@@ -174,40 +172,13 @@ build/RigidBodyGroup.o: src/RigidBodyGroup.cpp /usr/include/stdc-predef.h \
  /usr/include/glm/detail/func_integer_simd.inl \
  /usr/include/glm/simd/integer.h \
  /usr/include/glm/gtc/matrix_transform.hpp \
- /usr/include/glm/gtc/constants.hpp /usr/include/glm/gtc/constants.inl \
+ /usr/include/glm/gtc/constants.hpp /usr/include/glm/detail/setup.hpp \
+ /usr/include/glm/gtc/constants.inl \
  /usr/include/glm/gtc/matrix_transform.inl \
  /usr/include/glm/gtx/transform.inl /usr/include/glm/gtx/quaternion.hpp \
  /usr/include/glm/gtc/quaternion.hpp /usr/include/glm/gtc/quaternion.inl \
  /usr/include/glm/gtc/epsilon.hpp /usr/include/glm/gtc/epsilon.inl \
  /usr/include/glm/gtc/quaternion_simd.inl /usr/include/glm/gtx/norm.hpp \
  /usr/include/glm/gtx/norm.inl /usr/include/glm/gtx/quaternion.inl \
- /usr/include/c++/7/vector /usr/include/c++/7/bits/stl_algobase.h \
- /usr/include/c++/7/bits/functexcept.h \
- /usr/include/c++/7/bits/exception_defines.h \
- /usr/include/c++/7/ext/numeric_traits.h \
- /usr/include/c++/7/bits/stl_pair.h /usr/include/c++/7/bits/move.h \
- /usr/include/c++/7/bits/concept_check.h \
- /usr/include/c++/7/bits/stl_iterator_base_types.h \
- /usr/include/c++/7/bits/stl_iterator_base_funcs.h \
- /usr/include/c++/7/debug/assertions.h \
- /usr/include/c++/7/bits/stl_iterator.h \
- /usr/include/c++/7/bits/ptr_traits.h /usr/include/c++/7/debug/debug.h \
- /usr/include/c++/7/bits/predefined_ops.h \
- /usr/include/c++/7/bits/allocator.h \
- /usr/include/x86_64-linux-gnu/c++/7/bits/c++allocator.h \
- /usr/include/c++/7/ext/new_allocator.h /usr/include/c++/7/new \
- /usr/include/c++/7/exception /usr/include/c++/7/bits/exception.h \
- /usr/include/c++/7/bits/exception_ptr.h \
- /usr/include/c++/7/bits/cxxabi_init_exception.h \
- /usr/include/c++/7/typeinfo /usr/include/c++/7/bits/hash_bytes.h \
- /usr/include/c++/7/bits/nested_exception.h \
- /usr/include/c++/7/bits/memoryfwd.h \
- /usr/include/c++/7/bits/stl_construct.h \
- /usr/include/c++/7/ext/alloc_traits.h \
- /usr/include/c++/7/bits/alloc_traits.h \
- /usr/include/c++/7/bits/stl_uninitialized.h \
- /usr/include/c++/7/bits/stl_vector.h /usr/include/c++/7/initializer_list \
- /usr/include/c++/7/bits/stl_bvector.h \
- /usr/include/c++/7/bits/functional_hash.h \
- /usr/include/c++/7/bits/range_access.h \
- /usr/include/c++/7/bits/vector.tcc include/RigidBodyGroupMember.h
+ /usr/include/glm/gtc/matrix_inverse.hpp \
+ /usr/include/glm/gtc/matrix_inverse.inl

@@ -8,7 +8,7 @@
 class Mass {
 private:
 	double mValue = 0.0;
-	glm::dvec3 mCentre;
+	glm::dvec3 mCentre = glm::dvec3(0.0);
 
 public:
 	Mass();

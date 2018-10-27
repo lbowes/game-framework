@@ -151,9 +151,8 @@ build/RigidBody.o: src/RigidBody.cpp /usr/include/stdc-predef.h \
  /usr/include/glm/simd/matrix.h /usr/include/glm/gtc/matrix_inverse.hpp \
  /usr/include/glm/detail/setup.hpp \
  /usr/include/glm/gtc/matrix_inverse.inl include/Mass.h \
- /home/lbowes/dev/Programming/Deps/Includes/GraphicsFramework/CoordTransform3D.h \
- /usr/include/glm/gtx/transform.hpp /usr/include/glm/glm.hpp \
- /usr/include/c++/7/climits \
+ include/CoordTransform3D.h /usr/include/glm/gtx/transform.hpp \
+ /usr/include/glm/glm.hpp /usr/include/c++/7/climits \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \

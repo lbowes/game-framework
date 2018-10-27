@@ -39,7 +39,7 @@ void RigidBody::integrate(double t, double dt) {
 
 	mState.mMomentum_world += changeWithTime.dm * dt;
 	mState.mAngularMomentum_world += changeWithTime.dam * dt;
-	mState.mCMPosition_world += changeWithTime.dx * dt;
+	mState.mCoMPosition_world += changeWithTime.dx * dt;
 	mState.mOrientation_world += changeWithTime.dor * dt;
 
 	mState.recalcSecondaryProps();
@@ -119,7 +119,7 @@ Derivative RigidBody::evaluate(State& initial, double t, double dt, const Deriva
 	//Takes a state and calculates the new derivatives of this state at t + dt
 {
 	State next;
-	next.mCMPosition_world = initial.mCMPosition_world + d.dx * dt;
+	next.mCoMPosition_world = initial.mCoMPosition_world + d.dx * dt;
 	next.mMomentum_world = initial.mMomentum_world + d.dm * dt;
 	next.mOrientation_world = initial.mOrientation_world + d.dor * dt;
 	next.mAngularMomentum_world = initial.mAngularMomentum_world + d.dam * dt;

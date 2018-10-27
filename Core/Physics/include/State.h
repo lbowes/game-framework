@@ -4,8 +4,8 @@
 
 #include "InertiaTensor.h"
 #include "Mass.h"
+#include "CoordTransform3D.h"
 
-#include <GraphicsFramework/CoordTransform3D.h>
 #include <glm/vec3.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
@@ -17,24 +17,24 @@ class State {
 private:
 	//Primary state	
 	glm::dvec3
-		mCMPosition_world,
+		mCoMPosition_world,
 		mMomentum_world,
 		mAngularMomentum_world;
 			
-		glm::dquat mOrientation_world;
+	glm::dquat mOrientation_world;
 
-		//Secondary state
-		glm::dvec3
-			mVelocity_world,
-			mAngularVelocity_world;
+	//Secondary state
+	glm::dvec3
+		mVelocity_world,
+		mAngularVelocity_world;
 			
-		glm::dquat mSpin_world;
+	glm::dquat mSpin_world;
 			
-		GF::CoordTransform3D mObjectSpace;
+	CoordTransform3D mObjectSpace;
 
-		//Tertiary state
-		InertiaTensor mInertiaTensor_local;
-		Mass mMass_local;
+	//Tertiary state
+	InertiaTensor mInertiaTensor_local;
+	Mass mMass_local;
 
 public:
 	State() = default;
@@ -43,7 +43,7 @@ public:
 
 	void reset();
 
-	glm::dvec3 getCMPosition_world() const { return mCMPosition_world; }
+	glm::dvec3 getCoMPosition_world() const { return mCoMPosition_world; }
 	glm::dquat getOrientation_world() const { return mOrientation_world; }
 	glm::dvec3 getVelocity_world() const { return mVelocity_world; }
 	glm::dvec3 getAngularVelocity_world() const { return mAngularVelocity_world; }
@@ -51,12 +51,13 @@ public:
 	glm::dvec3 getAngularMomentum_world() const { return mAngularMomentum_world; }
 	InertiaTensor getInertiaTensor_local() const { return mInertiaTensor_local; }
 	Mass getMass_local() const { return mMass_local; }
-	const GF::CoordTransform3D& getObjectSpace() const { return mObjectSpace; }
+	const CoordTransform3D& getObjectSpace() const { return mObjectSpace; }
 			
 	glm::dvec3 velocityAtWorldPoint_world(glm::dvec3 position_world) const;
 	glm::dvec3 velocityAtLocalPoint_world(glm::dvec3 position_local) const;
 			
 	void setPosition_world(glm::dvec3 newPosition_world);
+	void setCoMPosition_world(glm::dvec3 newCoMPosition_world);
 	void setMomentum_world(glm::dvec3 newMomentum_world);
 	void setAngularMomentum_world(glm::dvec3 newAngularMomentum_world);
 	void setOrientation_world(glm::dquat newOrientation_world);
@@ -66,7 +67,7 @@ public:
 	void setMass_local(Mass newMass_local);
 	void setMassValue_local(double newMassValue_local);
 	void setMassCentre_local(glm::dvec3 newMassCentre_local);
-	void setObjectToParentTransform(GF::CoordTransform3D objectToParent);
+	void setObjectToParentTransform(CoordTransform3D objectToParent);
 
 private:
 	void recalcSecondaryProps();

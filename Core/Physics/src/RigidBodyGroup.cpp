@@ -1,18 +1,18 @@
 #include "RigidBodyGroup.h"
 
-RigidBodyGroup::RigidBodyGroup(Integrator integrator, SubUpdateDepth subUpdateDepth) :
+RigidBodyGroup::RigidBodyGroup(Integrator integrator, MemberUpdateDepth subUpdateDepth) :
 	RigidBody(integrator),
-	mSubUpdateDepth(subUpdateDepth)
+	mMemberUpdateDepth(subUpdateDepth)
 { }
 
-void RigidBodyGroup::addBody(RigidBody& sub, GF::CoordTransform3D subToComposite) {
+void RigidBodyGroup::addBody(RigidBody& member, CoordTransform3D memberToGroup) {
 	bool reusedSlot = false;
 	
 	//Before adding anything else to the vector we want to check whether or not a space has been vacated by a previous now-disconnected body
-	for (int i = 0; i < mSubBodies.size(); i++) {
-		if (mSubBodies[i].mConnected == false) {
-			mSubBodies[i] = SubBody(sub, subToComposite);
-			updateSubState(mSubBodies[i]);
+	for (int i = 0; i < mMembers.size(); i++) {
+		if (mMembers[i].mConnected == false) {
+			mMembers[i] = RBGroupMember(member, memberToGroup);
+			updateMemberState(mMembers[i]);
 			reusedSlot = true;
 			break;
 		}
@@ -20,23 +20,60 @@ void RigidBodyGroup::addBody(RigidBody& sub, GF::CoordTransform3D subToComposite
 	
 	//But if we've not been able to find a spare space, then create a new one
 	if (!reusedSlot) {
-		mSubBodies.push_back(SubBody(sub, subToComposite));
-		updateSubState(mSubBodies.back());
+		mMembers.push_back(RBGroupMember(member, memberToGroup));
+		updateMemberState(mMembers.back());
 	}
 
 	updateCombinedMass_local();
 	updateCombinedInertia_local();
 }
 
+//The following members need to set the state of the internal RigidBody and then update the state of the sub bodies correctly
+void RigidBodyGroup::setPosition_world(glm::dvec3 newPosition_world) {
+	mState.setPosition_world(newPosition_world);
+
+
+}
+
+void RigidBodyGroup::setMomentum_world(glm::dvec3 newMomentum_world) {
+	mState.setMomentum_world(newMomentum_world);
+
+}
+
+void RigidBodyGroup::setAngularMomentum_world(glm::dvec3 newAngularMomentum_world) {
+	mState.setAngularMomentum_world(newAngularMomentum_world);
+
+}
+
+void RigidBodyGroup::setOrientation_world(glm::dquat newOrientation_world) {
+	 mState.setOrientation_world(newOrientation_world);
+
+}
+
+void RigidBodyGroup::setVelocity_world(glm::dvec3 newVelocity_world) {
+	mState.setVelocity_world(newVelocity_world);
+
+}
+
+void RigidBodyGroup::setAngularVelocity_world(glm::dvec3 newAngularVelocity_world) {
+	 mState.setAngularVelocity_world(newAngularVelocity_world);
+
+}
+
+void RigidBodyGroup::setObjectToParentTransform(CoordTransform3D objectToParent) {
+	mState.setObjectToParentTransform(objectToParent);
+
+}
+
 void RigidBodyGroup::update(double t, double dt) {
 	//If there is one body connected to the group, it must be classed as disconnected (there is no group anymore)
-	if (isFullyFragmentated()) {
-		for (SubBody& sub : mSubBodies)
-			sub.disconnect();
+	if (isFullyFragmented()) {
+		for (RBGroupMember& m : mMembers)
+			m.disconnect();
 	}
 	else {
-		//Use the result of the integration to manually provide the state of each of the connected subs (re-position, re-orient etc)
-		updateAllSubStates();
+		//Use the result of the integration to manually provide the state of each of the connected subs (reposition, reorient etc)
+		updateAllMemberStates();
 		
 		//Update the combined properties of the group
 		updateCombinedMass_local();
@@ -50,11 +87,13 @@ void RigidBodyGroup::update(double t, double dt) {
 void RigidBodyGroup::updateCombinedMass_local() {
 	Mass combined;
 
-	for (SubBody& sub : mSubBodies) {
-		if (sub.mConnected) {
-			const Mass& subMass_sub = sub.mRigidBody->mState.getMass_local();
-			glm::dvec3 subCentreMass_group = sub.mSubToComposite.toParentSpace(subMass_sub.getCentre());
-			combined += Mass(subMass_sub.getValue(), subCentreMass_group);
+	for (RBGroupMember& m : mMembers) {
+		if (m.mConnected) {
+			const Mass& memberMass_sub = m.mRigidBody->mState.getMass_local();
+			
+			glm::dvec3 memberCoM_group = m.mMemberToGroup.toParentSpace(memberMass_sub.getCentre());
+			
+			combined += Mass(memberMass_sub.getValue(), memberCoM_group);
 		}
 	}
 
@@ -69,91 +108,93 @@ void RigidBodyGroup::updateCombinedInertia_local() {
 
 	InertiaTensor combinedInertia;
 
-	for (SubBody& sub : mSubBodies) {
-		if (sub.mConnected) {
-			const State& subState = sub.mRigidBody->mState;
-			InertiaTensor rotatedSub = subState.getInertiaTensor_local().afterRotation(sub.mSubToComposite.getLocalToParent_rotation());
+	for (RBGroupMember& m : mMembers) {
+		if (m.mConnected) {
+			const State& memberState = m.mRigidBody->mState;
+			
+			InertiaTensor rotatedMember = memberState.getInertiaTensor_local().afterRotation(m.mMemberToGroup.getLocalToParent_rotation());
+			
 			combinedInertia += InertiaTensor::parallelAxis(
-				rotatedSub,
-				subState.getMass_local().getValue(),
-				mState.getMass_local().getCentre() - sub.mSubToComposite.toParentSpace(subState.getMass_local().getCentre())
+				rotatedMember,
+				memberState.getMass_local().getValue(),
+				mState.getMass_local().getCentre() - m.mMemberToGroup.toParentSpace(memberState.getMass_local().getCentre())
 			);
 		}
 	}
-
+	
 	mState.setInertiaTensor_local(combinedInertia);
 }
 
 void RigidBodyGroup::addForces(const State& state, double t) 
 	//Adds all the forces generated by subs to the total, for use by the group.
 {
-	for (SubBody& sub : mSubBodies) {
-		if (sub.mConnected) {
-			for (const Force_world& force_world : sub.mRigidBody->getForces_world())
-				addForce({ force_world.mForce_world, sub.mSubToComposite.toParentSpace(force_world.mApplicationPoint_local) });
+	for (RBGroupMember& m : mMembers) {
+		if (m.mConnected) {
+			for (const Force_world& force_world : m.mRigidBody->getForces_world())
+				addForce({ force_world.mForce_world, m.mMemberToGroup.toParentSpace(force_world.mApplicationPoint_local) });
 		}
 	}
 }
 
 void RigidBodyGroup::addTorques(const State& state, double t) { 
-	//addTorque_world({ 0.0, 0.0, 480.0 });
+	//TODO: Apply torques added to sub bodies
 }
 
-void RigidBodyGroup::updateAllSubStates() 
-	//This function must be called to update the sub bodies when the composite body's state has changed.
+void RigidBodyGroup::updateAllMemberStates() 
+	//This function must be called to update the members when the group's state has changed.
 {
-	for (SubBody& sub : mSubBodies) {
-		if (sub.mConnected)
-			updateSubState(sub);
+	for (RBGroupMember& m : mMembers) {
+		if (m.mConnected)
+			updateMemberState(m);
 	}
 }
 
-void RigidBodyGroup::updateSubState(SubBody& toUpdate) {
+void RigidBodyGroup::updateMemberState(RBGroupMember& toUpdate) {
 	using namespace glm;
 
-	State& subState = toUpdate.mRigidBody->mState;
+	State& memberState = toUpdate.mRigidBody->mState;
 
 	//Regardless of update depth, all sub bodies must be given a position_world and orientation_world each update
 	//Position
-	subState.setPosition_world(
+	memberState.setPosition_world(
 		mState.getObjectSpace().toParentSpace(
-			toUpdate.mSubToComposite.toParentSpace()
+			toUpdate.mMemberToGroup.toParentSpace()
 		)
 	);
 
 	//Orientation
-	subState.setOrientation_world(
+	memberState.setOrientation_world(
 		mState.getObjectSpace().toParentSpace_rotation(
-			glm::toQuat(toUpdate.mSubToComposite.getLocalToParent_rotation())
+			glm::toQuat(toUpdate.mMemberToGroup.getLocalToParent_rotation())
 		)
 	);
 
 	//If we're only performing a shallow update, then the sub bodies won't be given their full state until they disconnect,
-	if (mSubUpdateDepth == SubUpdateDepth::shallow) {
-		subState.setVelocity_world(glm::dvec3(0.0));
-		subState.setAngularVelocity_world(glm::dvec3(0.0));
+	if (mMemberUpdateDepth == MemberUpdateDepth::shallow) {
+		memberState.setVelocity_world(glm::dvec3(0.0));
+		memberState.setAngularVelocity_world(glm::dvec3(0.0));
 	}
 	//but if this is a deep update, then the entire state of the sub bodies must be calculated each update.
-	else if (mSubUpdateDepth == SubUpdateDepth::deep) {
+	else if (mMemberUpdateDepth == MemberUpdateDepth::deep) {
 		//Linear velocity
-		subState.setVelocity_world(
+		memberState.setVelocity_world(
 			mState.velocityAtLocalPoint_world(
-				toUpdate.mSubToComposite.toParentSpace(
-					subState.getMass_local().getCentre()
+				toUpdate.mMemberToGroup.toParentSpace(
+					memberState.getMass_local().getCentre()
 				)
 			)
 		);
 
 		//Angular velocity
-		subState.setAngularVelocity_world(mState.getAngularVelocity_world());
+		memberState.setAngularVelocity_world(mState.getAngularVelocity_world());
 	}
 }
 
-bool RigidBodyGroup::isFullyFragmentated() {
+bool RigidBodyGroup::isFullyFragmented() {
 	unsigned mNumConnections = 0;
 
-	for (SubBody& sub : mSubBodies)
-		mNumConnections += sub.mConnected;
+	for (RBGroupMember& m : mMembers)
+		mNumConnections += m.mConnected;
 
 	return mNumConnections < 2;
 }

@@ -1,7 +1,8 @@
-build/RigidBodyGroup.o: src/RigidBodyGroup.cpp /usr/include/stdc-predef.h \
- include/RigidBodyGroup.h include/RigidBody.h include/State.h \
- include/InertiaTensor.h /usr/include/glm/mat3x3.hpp \
- /usr/include/glm/detail/setup.hpp /usr/include/c++/7/cassert \
+build/RigidBodyGroupMember.o: src/RigidBodyGroupMember.cpp \
+ /usr/include/stdc-predef.h include/RigidBodyGroupMember.h \
+ include/RigidBody.h include/State.h include/InertiaTensor.h \
+ /usr/include/glm/mat3x3.hpp /usr/include/glm/detail/setup.hpp \
+ /usr/include/c++/7/cassert \
  /usr/include/x86_64-linux-gnu/c++/7/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/7/bits/os_defines.h \
  /usr/include/features.h /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -210,4 +211,4 @@ build/RigidBodyGroup.o: src/RigidBodyGroup.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/7/bits/stl_bvector.h \
  /usr/include/c++/7/bits/functional_hash.h \
  /usr/include/c++/7/bits/range_access.h \
- /usr/include/c++/7/bits/vector.tcc include/RigidBodyGroupMember.h
+ /usr/include/c++/7/bits/vector.tcc
