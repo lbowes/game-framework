@@ -38,6 +38,32 @@ void CoordTransform3D::setLocalToParent_rotation(glm::dquat rotation_localToPare
 	updateTotalTransform_localToParent();
 }
 
+void CoordTransform3D::lerp(const CoordTransform3D &dest, double x) {
+	mTranslation_localToParent = glm::interpolate(mTranslation_localToParent, dest.mTranslation_localToParent, x);
+	mRotation_localToParent = glm::interpolate(mRotation_localToParent, dest.mRotation_localToParent, x);
+
+	updateTotalTransform_localToParent();
+}
+
 void CoordTransform3D::updateTotalTransform_localToParent() {
 	mTotal_localToParent = mTranslation_localToParent * mRotation_localToParent;
+}
+
+CoordTransform3D lerp(const CoordTransform3D &a, const CoordTransform3D &b, double x) {
+	CoordTransform3D output;
+
+	output.mTranslation_localToParent = glm::interpolate(a.mTranslation_localToParent, b.mTranslation_localToParent, x);
+	
+	output.mRotation_localToParent = 
+		glm::mat4_cast(
+			glm::slerp(
+				glm::quat_cast(a.mRotation_localToParent), 
+				glm::quat_cast(b.mRotation_localToParent),
+				x
+			)
+		);
+
+	output.updateTotalTransform_localToParent();
+
+	return output;
 }

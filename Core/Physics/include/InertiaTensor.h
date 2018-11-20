@@ -5,7 +5,7 @@
 #include <glm/mat3x3.hpp>
 #include <glm/geometric.hpp>
 #include <glm/gtc/matrix_inverse.hpp>
-		
+
 class InertiaTensor {
 private:
 	glm::dmat3 mInternal = glm::mat3(1.0f);

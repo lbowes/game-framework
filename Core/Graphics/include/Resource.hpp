@@ -1,5 +1,5 @@
-#ifndef RESOURCE_H
-#define RESOURCE_H
+#ifndef GF_RESOURCE_H
+#define GF_RESOURCE_H
 #pragma once
 
 #include <string>
@@ -17,7 +17,7 @@ namespace GF {
 
 		virtual ~Resource() = default;
 
-		inline std::string getUniqueID() const { return mUniqueId; }
+		std::string getUniqueID() const { return mUniqueId; }
 
 	};
 

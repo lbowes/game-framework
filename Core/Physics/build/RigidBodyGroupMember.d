@@ -152,8 +152,8 @@ build/RigidBodyGroupMember.o: src/RigidBodyGroupMember.cpp \
  /usr/include/glm/simd/matrix.h /usr/include/glm/gtc/matrix_inverse.hpp \
  /usr/include/glm/detail/setup.hpp \
  /usr/include/glm/gtc/matrix_inverse.inl include/Mass.h \
- include/CoordTransform3D.h /usr/include/glm/gtx/transform.hpp \
- /usr/include/glm/glm.hpp /usr/include/c++/7/climits \
+ /usr/include/glm/gtx/compatibility.hpp /usr/include/glm/glm.hpp \
+ /usr/include/c++/7/climits \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h \
  /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
@@ -173,14 +173,19 @@ build/RigidBodyGroupMember.o: src/RigidBodyGroupMember.cpp \
  /usr/include/glm/integer.hpp /usr/include/glm/detail/func_integer.inl \
  /usr/include/glm/ext/vec1.hpp /usr/include/glm/detail/type_vec1.inl \
  /usr/include/glm/detail/func_integer_simd.inl \
- /usr/include/glm/simd/integer.h \
- /usr/include/glm/gtc/matrix_transform.hpp \
+ /usr/include/glm/simd/integer.h /usr/include/glm/gtc/quaternion.hpp \
  /usr/include/glm/gtc/constants.hpp /usr/include/glm/gtc/constants.inl \
+ /usr/include/glm/gtc/quaternion.inl /usr/include/glm/gtc/epsilon.hpp \
+ /usr/include/glm/gtc/epsilon.inl \
+ /usr/include/glm/gtc/quaternion_simd.inl \
+ /usr/include/glm/gtx/compatibility.inl include/CoordTransform3D.h \
+ /usr/include/glm/gtx/transform.hpp \
+ /usr/include/glm/gtc/matrix_transform.hpp \
  /usr/include/glm/gtc/matrix_transform.inl \
- /usr/include/glm/gtx/transform.inl /usr/include/glm/gtx/quaternion.hpp \
- /usr/include/glm/gtc/quaternion.hpp /usr/include/glm/gtc/quaternion.inl \
- /usr/include/glm/gtc/epsilon.hpp /usr/include/glm/gtc/epsilon.inl \
- /usr/include/glm/gtc/quaternion_simd.inl /usr/include/glm/gtx/norm.hpp \
+ /usr/include/glm/gtx/transform.inl \
+ /usr/include/glm/gtx/matrix_interpolation.hpp \
+ /usr/include/glm/gtx/matrix_interpolation.inl \
+ /usr/include/glm/gtx/quaternion.hpp /usr/include/glm/gtx/norm.hpp \
  /usr/include/glm/gtx/norm.inl /usr/include/glm/gtx/quaternion.inl \
  /usr/include/c++/7/vector /usr/include/c++/7/bits/stl_algobase.h \
  /usr/include/c++/7/bits/functexcept.h \

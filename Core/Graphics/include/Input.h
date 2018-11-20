@@ -18,8 +18,10 @@ namespace GF {
 		static bool
 			mKeysPressed[MAX_KEYS],
 			mKeysReleased[MAX_KEYS],
+			mKeysReleased_previous[MAX_KEYS],
 			mMouseButtonsPressed[MAX_BUTTONS],
 			mMouseButtonsReleased[MAX_BUTTONS],
+			mMouseButtonsReleased_previous[MAX_BUTTONS],
 			mCursorJustHidden,
 			mFocusJustCaptured,
 			mControllerConnected,
@@ -38,8 +40,10 @@ namespace GF {
 
 		static bool isKeyPressed(unsigned short keycode);
 		static bool isKeyReleased(unsigned short keycode);
+		static bool isKeyClicked(unsigned short keycode);
 		static bool isMouseButtonPressed(unsigned char button);
 		static bool isMouseButtonReleased(unsigned char button);
+		static bool isMouseButtonClicked(unsigned char button);
 		static bool isControllerButtonPressed(unsigned char button);
 		static bool isControllerButtonReleased(unsigned char button);
 		static void showCursor();

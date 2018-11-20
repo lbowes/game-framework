@@ -49,7 +49,9 @@ void State::setCoMPosition_world(glm::dvec3 newCoMPosition_world) {
 
 void State::setMomentum_world(glm::dvec3 newMomentum_world) {
 	mMomentum_world = newMomentum_world;
-	mVelocity_world = mMomentum_world / mMass_local.getValue();
+
+	if(mMass_local.getValue() > 0.0)
+		mVelocity_world = mMomentum_world / mMass_local.getValue();
 }
 
 void State::setAngularMomentum_world(glm::dvec3 newAngularMomentum_world) {

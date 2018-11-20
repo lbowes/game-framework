@@ -175,9 +175,12 @@ build/CoordTransform3D.o: src/CoordTransform3D.cpp \
  /usr/include/glm/gtc/constants.hpp /usr/include/glm/detail/setup.hpp \
  /usr/include/glm/gtc/constants.inl \
  /usr/include/glm/gtc/matrix_transform.inl \
- /usr/include/glm/gtx/transform.inl /usr/include/glm/gtx/quaternion.hpp \
- /usr/include/glm/gtc/quaternion.hpp /usr/include/glm/gtc/quaternion.inl \
- /usr/include/glm/gtc/epsilon.hpp /usr/include/glm/gtc/epsilon.inl \
+ /usr/include/glm/gtx/transform.inl \
+ /usr/include/glm/gtx/matrix_interpolation.hpp \
+ /usr/include/glm/gtx/matrix_interpolation.inl \
+ /usr/include/glm/gtx/quaternion.hpp /usr/include/glm/gtc/quaternion.hpp \
+ /usr/include/glm/gtc/quaternion.inl /usr/include/glm/gtc/epsilon.hpp \
+ /usr/include/glm/gtc/epsilon.inl \
  /usr/include/glm/gtc/quaternion_simd.inl /usr/include/glm/gtx/norm.hpp \
  /usr/include/glm/gtx/norm.inl /usr/include/glm/gtx/quaternion.inl \
  /usr/include/glm/gtc/matrix_inverse.hpp \

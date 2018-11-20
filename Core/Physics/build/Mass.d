@@ -69,4 +69,106 @@ build/Mass.o: src/Mass.cpp /usr/include/stdc-predef.h include/Mass.h \
  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
- /usr/include/x86_64-linux-gnu/bits/iscanonical.h
+ /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+ /usr/include/glm/gtx/compatibility.hpp /usr/include/glm/glm.hpp \
+ /usr/include/glm/detail/_fixes.hpp /usr/include/c++/7/climits \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/uio_lim.h /usr/include/c++/7/cfloat \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/float.h /usr/include/glm/fwd.hpp \
+ /usr/include/glm/detail/type_float.hpp \
+ /usr/include/glm/detail/type_mat.hpp /usr/include/glm/vec2.hpp \
+ /usr/include/glm/detail/type_vec2.hpp \
+ /usr/include/glm/detail/type_vec2.inl /usr/include/glm/vec4.hpp \
+ /usr/include/glm/detail/type_vec4.hpp \
+ /usr/include/glm/detail/type_vec4.inl \
+ /usr/include/glm/detail/type_vec4_simd.inl /usr/include/glm/mat2x2.hpp \
+ /usr/include/glm/detail/type_mat2x2.hpp \
+ /usr/include/glm/detail/type_mat2x2.inl /usr/include/glm/matrix.hpp \
+ /usr/include/glm/mat2x3.hpp /usr/include/glm/detail/type_mat2x3.hpp \
+ /usr/include/glm/detail/type_mat2x3.inl /usr/include/glm/mat2x4.hpp \
+ /usr/include/glm/detail/type_mat2x4.hpp \
+ /usr/include/glm/detail/type_mat2x4.inl /usr/include/glm/mat3x2.hpp \
+ /usr/include/glm/detail/type_mat3x2.hpp \
+ /usr/include/glm/detail/type_mat3x2.inl /usr/include/glm/mat3x3.hpp \
+ /usr/include/glm/detail/type_mat3x3.hpp \
+ /usr/include/glm/detail/type_mat3x3.inl /usr/include/glm/mat3x4.hpp \
+ /usr/include/glm/detail/type_mat3x4.hpp \
+ /usr/include/glm/detail/type_mat3x4.inl /usr/include/glm/mat4x2.hpp \
+ /usr/include/glm/detail/type_mat4x2.hpp \
+ /usr/include/glm/detail/type_mat4x2.inl /usr/include/glm/mat4x3.hpp \
+ /usr/include/glm/detail/type_mat4x3.hpp \
+ /usr/include/glm/detail/type_mat4x3.inl /usr/include/glm/mat4x4.hpp \
+ /usr/include/glm/detail/type_mat4x4.hpp \
+ /usr/include/glm/detail/type_mat4x4.inl \
+ /usr/include/glm/detail/type_mat4x4_simd.inl \
+ /usr/include/glm/detail/func_matrix.inl /usr/include/glm/geometric.hpp \
+ /usr/include/glm/detail/func_geometric.inl \
+ /usr/include/glm/exponential.hpp /usr/include/glm/detail/type_vec1.hpp \
+ /usr/include/glm/detail/func_exponential.inl \
+ /usr/include/glm/vector_relational.hpp \
+ /usr/include/glm/detail/func_vector_relational.inl \
+ /usr/include/glm/detail/func_vector_relational_simd.inl \
+ /usr/include/glm/detail/_vectorize.hpp \
+ /usr/include/glm/detail/type_vec1.hpp \
+ /usr/include/glm/detail/func_exponential_simd.inl \
+ /usr/include/glm/simd/exponential.h /usr/include/glm/common.hpp \
+ /usr/include/glm/detail/func_common.inl \
+ /usr/include/glm/detail/func_common_simd.inl \
+ /usr/include/glm/simd/common.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/immintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/pmmintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/tmmintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/smmintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/popcntintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/wmmintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avxintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx2intrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512fintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512erintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512pfintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512cdintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512vlintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512bwintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512dqintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512vlbwintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512vldqintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512ifmaintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512ifmavlintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512vbmiintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512vbmivlintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx5124fmapsintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx5124vnniwintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/avx512vpopcntdqintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/shaintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/lzcntintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/bmiintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/bmi2intrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/fmaintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/f16cintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/rtmintrin.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/xtestintrin.h \
+ /usr/include/glm/detail/func_geometric_simd.inl \
+ /usr/include/glm/simd/geometric.h \
+ /usr/include/glm/detail/func_matrix_simd.inl \
+ /usr/include/glm/simd/matrix.h /usr/include/glm/trigonometric.hpp \
+ /usr/include/glm/detail/func_trigonometric.inl \
+ /usr/include/glm/detail/func_trigonometric_simd.inl \
+ /usr/include/glm/packing.hpp /usr/include/glm/detail/func_packing.inl \
+ /usr/include/glm/detail/type_half.hpp \
+ /usr/include/glm/detail/type_half.inl \
+ /usr/include/glm/detail/func_packing_simd.inl \
+ /usr/include/glm/integer.hpp /usr/include/glm/detail/func_integer.inl \
+ /usr/include/glm/ext/vec1.hpp /usr/include/glm/detail/type_vec1.inl \
+ /usr/include/glm/detail/func_integer_simd.inl \
+ /usr/include/glm/simd/integer.h /usr/include/glm/gtc/quaternion.hpp \
+ /usr/include/glm/gtc/constants.hpp /usr/include/glm/detail/setup.hpp \
+ /usr/include/glm/gtc/constants.inl /usr/include/glm/gtc/quaternion.inl \
+ /usr/include/glm/gtc/epsilon.hpp /usr/include/glm/gtc/epsilon.inl \
+ /usr/include/glm/gtc/quaternion_simd.inl \
+ /usr/include/glm/gtx/compatibility.inl

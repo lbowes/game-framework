@@ -28,43 +28,6 @@ void RigidBodyGroup::addBody(RigidBody& member, CoordTransform3D memberToGroup) 
 	updateCombinedInertia_local();
 }
 
-//The following members need to set the state of the internal RigidBody and then update the state of the sub bodies correctly
-void RigidBodyGroup::setPosition_world(glm::dvec3 newPosition_world) {
-	mState.setPosition_world(newPosition_world);
-
-
-}
-
-void RigidBodyGroup::setMomentum_world(glm::dvec3 newMomentum_world) {
-	mState.setMomentum_world(newMomentum_world);
-
-}
-
-void RigidBodyGroup::setAngularMomentum_world(glm::dvec3 newAngularMomentum_world) {
-	mState.setAngularMomentum_world(newAngularMomentum_world);
-
-}
-
-void RigidBodyGroup::setOrientation_world(glm::dquat newOrientation_world) {
-	 mState.setOrientation_world(newOrientation_world);
-
-}
-
-void RigidBodyGroup::setVelocity_world(glm::dvec3 newVelocity_world) {
-	mState.setVelocity_world(newVelocity_world);
-
-}
-
-void RigidBodyGroup::setAngularVelocity_world(glm::dvec3 newAngularVelocity_world) {
-	 mState.setAngularVelocity_world(newAngularVelocity_world);
-
-}
-
-void RigidBodyGroup::setObjectToParentTransform(CoordTransform3D objectToParent) {
-	mState.setObjectToParentTransform(objectToParent);
-
-}
-
 void RigidBodyGroup::update(double t, double dt) {
 	//If there is one body connected to the group, it must be classed as disconnected (there is no group anymore)
 	if (isFullyFragmented()) {

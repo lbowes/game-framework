@@ -4,6 +4,8 @@
 
 #include <glm/vec3.hpp>
 #include <cmath>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtx/compatibility.hpp>
 
 class Mass {
 private:
@@ -17,6 +19,7 @@ public:
 
 	void operator=(const Mass& other);
 	void operator=(double other);
+	void lerp(const Mass &b, double x);
 	Mass operator+=(const Mass& other);
 	Mass operator-=(const Mass& other);
 	
@@ -31,6 +34,7 @@ public:
 	friend bool operator>(const Mass& l, const Mass& r);
 	friend Mass operator+(const Mass& l, const Mass& r);
 	friend Mass operator-(const Mass& l, const Mass& r);
+	friend Mass lerp(const Mass &a, const Mass &b, double x);
 			
 };
 
@@ -40,6 +44,7 @@ bool operator<(const Mass& l, const Mass& r);
 bool operator>(const Mass& l, const Mass& r);
 Mass operator+(const Mass& l, const Mass& r);
 Mass operator-(const Mass& l, const Mass& r);
+Mass lerp(const Mass &a, const Mass &b, double x);
 
 long double operator""_lbs(long double lbs);
 long double operator""_slugs(long double slugs);

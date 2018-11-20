@@ -7,8 +7,10 @@ namespace GF {
 	bool
 		Input::mKeysPressed[MAX_KEYS],
 		Input::mKeysReleased[MAX_KEYS],
+		Input::mKeysReleased_previous[MAX_KEYS],
 		Input::mMouseButtonsPressed[MAX_BUTTONS],
 		Input::mMouseButtonsReleased[MAX_BUTTONS],
+		Input::mMouseButtonsReleased_previous[MAX_BUTTONS],
 		Input::mCursorJustHidden = false,
 		Input::mFocusJustCaptured = true,
 		Input::mCursorHidden;
@@ -28,11 +30,13 @@ namespace GF {
 		for (int i = 0; i < MAX_KEYS; i++) {
 			mKeysPressed[i] = false;
 			mKeysReleased[i] = false;
+			mKeysReleased_previous[i] = false;
 		}
 
 		for (int i = 0; i < MAX_BUTTONS; i++) {
 			mMouseButtonsPressed[i] = false;
 			mMouseButtonsReleased[i] = false;
+			mMouseButtonsReleased_previous[i] = false;
 		}
 	}
 
@@ -55,6 +59,12 @@ namespace GF {
 
 		mMouseDelta = mMousePosition - mMousePositionPrev;
 		mMousePositionPrev = mMousePosition;
+
+		for (int i = 0; i < MAX_KEYS; i++)
+			mKeysReleased_previous[i] = mKeysReleased[i];
+
+		for (int i = 0; i < MAX_BUTTONS; i++)
+			mMouseButtonsReleased_previous[i] = mMouseButtonsReleased[i];
 	}
 
 	bool Input::isKeyPressed(unsigned short keycode) {
@@ -65,14 +75,25 @@ namespace GF {
 		if (keycode > MAX_KEYS)
 			return false;
 		
-		if (mKeysReleased[keycode] == true) {
-			mKeysReleased[keycode] = false;
-			return true;
-		}
-
-		return false;
+		return mKeysReleased[keycode];
 	}
 	
+	bool Input::isKeyClicked(unsigned short keycode) {
+		if (keycode > MAX_KEYS)
+			return false;
+
+		//TODO: Implement this
+		//Store a separate 'difference' map of key release *changes* between this update and the previous.
+		//This should be implemented in the form of a separate array that we iterate through each update.
+		//The array should store the release state array of the previous update cycle.
+		//Then, in this function, we check whether the mPreviousReleased[KEY] != mCurrentReleased[KEY]
+
+		//For example, if the release state for GLFW_KEY_A was 0 last update and it is now 1, that means
+		//the user lifted their finger off the key this update and therefore a click event has occured.
+
+		return !mKeysReleased_previous[keycode] && mKeysReleased[keycode];
+	}
+
 	bool Input::isMouseButtonPressed(unsigned char button) {
 		return button > MAX_BUTTONS ? false : mMouseButtonsPressed[button];
 	}
@@ -80,13 +101,17 @@ namespace GF {
 	bool Input::isMouseButtonReleased(unsigned char button) {
 		if (button > MAX_BUTTONS)
 			return false;
+	
+		return mMouseButtonsReleased[button];
+	}
+
+	bool Input::isMouseButtonClicked(unsigned char button) {
+		//TODO: Implement this - see isKeyClicked()
 		
-		if (mMouseButtonsReleased[button] == true) {
-			mMouseButtonsReleased[button] = false;
-			return true;
-		}
+		if (button > MAX_BUTTONS)
+			return false;
 		
-		return false;
+		return !mMouseButtonsReleased_previous[button] && mMouseButtonsReleased[button];
 	}
 
 	void Input::showCursor() {

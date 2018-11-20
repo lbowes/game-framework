@@ -19,6 +19,11 @@ void Mass::operator=(double other) {
 	this->mValue = other;
 }
 
+void Mass::lerp(const Mass &b, double x) {
+	mCentre = glm::lerp(mCentre, b.mCentre, x);
+	mValue = mValue + (b.mValue - mValue) * x;
+}
+
 Mass Mass::operator+=(const Mass& other) {
 	double newMass = this->mValue + other.mValue;
 
@@ -84,6 +89,15 @@ Mass operator-(const Mass& l, const Mass& r){
 		return Mass(newMass, (l.mValue * l.mCentre - r.mValue * r.mCentre) / newMass);
 	else
 		return Mass(0.0, l.mCentre);
+}
+
+Mass lerp(const Mass &a, const Mass &b, double x) {
+	Mass output;
+	
+	output.mCentre = glm::lerp(a.mCentre, b.mCentre, x);
+	output.mValue = a.mValue + (b.mValue - a.mValue) * x;
+
+	return output;
 }
 
 long double operator""_lbs(long double lbs) {

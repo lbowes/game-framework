@@ -24,14 +24,6 @@ public:
 	~RigidBodyGroup() = default;
 
 	void addBody(RigidBody& member, CoordTransform3D memberToGroup = CoordTransform3D());
-	
-	void setPosition_world(glm::dvec3 newPosition_world);
-	void setMomentum_world(glm::dvec3 newMomentum_world);
-	void setAngularMomentum_world(glm::dvec3 newAngularMomentum_world);
-	void setOrientation_world(glm::dquat newOrientation_world);
-	void setVelocity_world(glm::dvec3 newVelocity_world);
-	void setAngularVelocity_world(glm::dvec3 newAngularVelocity_world);
-	void setObjectToParentTransform(CoordTransform3D objectToParent);
 
 protected:
 	void update(double t, double dt);

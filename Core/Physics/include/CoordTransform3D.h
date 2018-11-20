@@ -6,11 +6,12 @@
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/transform.hpp>
+#include <glm/gtx/matrix_interpolation.hpp>
 
 #include <glm/vec3.hpp>
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtc/matrix_inverse.hpp>
- 
+
 class CoordTransform3D {
 private:
 	glm::dmat4
@@ -56,9 +57,14 @@ public:
 	void setLocalToParent_rotation(glm::dmat4 rotation_localToParent);
 	void setLocalToParent_rotation(glm::dquat rotation_localToParent);
 
-private:
+	void lerp(const CoordTransform3D &dest, double x);
+	friend CoordTransform3D lerp(const CoordTransform3D& a, const CoordTransform3D& b, double x);
+
+  private:
 	void updateTotalTransform_localToParent();
 
 };
+
+CoordTransform3D lerp(const CoordTransform3D &a, const CoordTransform3D &b, double x);
 
 #endif
