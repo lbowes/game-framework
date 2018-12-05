@@ -25,7 +25,7 @@ namespace GF {
 		bool mRunning = true;
 		
 	public:
-		Application(const std::string& windowTitle = "Application", const std::string& iconPath = "", bool focusOnCreation = true);
+		Application(const std::string& windowTitle = "Application", const std::string& iconPath = "", glm::ivec2 windowDimensions = glm::ivec2(-1, -1));
 		virtual ~Application();
 
 		void init();

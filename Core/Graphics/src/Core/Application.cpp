@@ -4,8 +4,8 @@
 
 namespace GF {
 
-	Application::Application(const std::string& windowTitle, const std::string& iconPath, bool focusOnCreation) :
-		mWindow(windowTitle, focusOnCreation)
+	Application::Application(const std::string& windowTitle, const std::string& iconPath, glm::ivec2 windowDimensions) :
+		mWindow(windowTitle, windowDimensions)
 	{
 		init();
 

@@ -5,12 +5,10 @@ namespace GF {
 
 	bool Window::mOpenGLInitialised = false;
 
-	Window::Window(const std::string& title, bool focusOnCreation) : 
+	Window::Window(const std::string& title, glm::ivec2 dimensions) : 
 		mTitle(title.c_str()),
-		mFocusOnCreation(focusOnCreation)
+		mDimensions(dimensions)
 	{
-		using namespace Utils;
-
 		if (!init())
 			glfwTerminate();
 	}
@@ -18,6 +16,10 @@ namespace GF {
 	Window::~Window() {
 		glfwDestroyWindow(mWindow);
 		glfwTerminate();
+	}
+
+	void Window::setDimensions(glm::ivec2 dimensions) { 
+		mDimensions = dimensions; 
 	}
 
 	void Window::setIcon(const std::string& iconPath) {
@@ -50,20 +52,19 @@ namespace GF {
 
 		mMonitor = glfwGetPrimaryMonitor();
 
-		setResolution();
-		mDimensions.x = mMonitorResolution.x * mWindowToScreenScale;
-		mDimensions.y = mMonitorResolution.y * mWindowToScreenScale;
+		const glm::ivec2 monitorResolution = getMonitorResolution();
+		
+		//Default dimensions initialised
+		if(mDimensions == glm::ivec2(-1, -1)) {
+			mDimensions.x = monitorResolution.x * mDefaultWindowToScreenScale;
+			mDimensions.y = monitorResolution.y * mDefaultWindowToScreenScale;
+		}
 
 		//Gets rid of title bar
 		//glfwWindowHint(GLFW_DECORATED, false);
 
-		//if (mFocusOnCreation) {
-			//glfwWindowHint(GLFW_FOCUSED, true);
-			//glfwWindowHint(GLFW_FLOATING, true);
-		//}
-
 		mWindow = glfwCreateWindow(mDimensions.x, mDimensions.y, mTitle, /*mMonitor*/nullptr, nullptr);
-		glfwSetWindowPos(mWindow, static_cast<int>(mMonitorResolution.x * 0.5f - mDimensions.x * 0.5f), static_cast<int>(mMonitorResolution.y * 0.5f - mDimensions.y * 0.5f));
+		glfwSetWindowPos(mWindow, static_cast<int>(monitorResolution.x * 0.5f - mDimensions.x * 0.5f), static_cast<int>(monitorResolution.y * 0.5f - mDimensions.y * 0.5f));
 
 		if (!mWindow) {
 			Logger::log(Logger::LogType::ERROR_HALT, "Window creation error.");
@@ -83,10 +84,9 @@ namespace GF {
 		return true;
 	}
 
-	void Window::setResolution() {
+	glm::ivec2 Window::getMonitorResolution() {
 		const GLFWvidmode* mode = glfwGetVideoMode(mMonitor);
-		mMonitorResolution.x = mode->width;
-		mMonitorResolution.y = mode->height;
+		return { mode->width, mode->height };
 	}
 
 	void Window::clear() const {

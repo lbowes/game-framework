@@ -20,19 +20,20 @@ namespace GF {
 		static bool mOpenGLInitialised;
 
 	private:
-		glm::ivec2
-			mDimensions,
-			mMonitorResolution;
-
-		const float mWindowToScreenScale = 0.6f;
+		static constexpr float mDefaultWindowToScreenScale = 0.5f;
+		
 		const char* mTitle = "";
+		
+		glm::ivec2 mDimensions = glm::vec2(-1, -1);
+		
 		GLFWwindow* mWindow = nullptr;
+		
 		GLFWmonitor* mMonitor = nullptr;
+		
 		glm::vec4 mClearColour = glm::vec4(0.5f, 0.5f, 0.5f, 1.0f);
-		bool mFocusOnCreation = false;
 
 	public:
-		Window(const std::string& title,  bool focusOnCreation = false);
+		Window(const std::string& title, glm::ivec2 dimensions = glm::ivec2(-1, -1));
 		~Window();
 
 		GLFWwindow* getHandle() const { return mWindow; }
@@ -40,14 +41,14 @@ namespace GF {
 		float getAspect() const { return static_cast<float>(mDimensions.x) / mDimensions.y; }
 		bool isClosed() const { return glfwWindowShouldClose(mWindow) == 1;  }
 
-		void setDimensions(glm::ivec2 dimensions) { mDimensions = dimensions; }
+		void setDimensions(glm::ivec2 dimensions);
 		void setClearColour(glm::vec4 newClearColour) { mClearColour = newClearColour; }
 		void close() { glfwSetWindowShouldClose(mWindow, GL_TRUE); }
 		void setIcon(const std::string& iconPath);
 
 	private:
 		bool init();
-		void setResolution();
+		glm::ivec2 getMonitorResolution();
 		void clear() const;
 		void update() const;
 
