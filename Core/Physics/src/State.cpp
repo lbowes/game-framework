@@ -80,7 +80,9 @@ void State::setVelocity_world(glm::dvec3 newVelocity_world) {
 
 void State::setAngularVelocity_world(glm::dvec3 newAngularVelocity_world) {
 	mAngularVelocity_world = newAngularVelocity_world;
-	mAngularMomentum_world = mOrientation_world * (mInertiaTensor_local * (inverse(mOrientation_world) * newAngularVelocity_world));
+	
+	InertiaTensor inertiaTensor_world = mInertiaTensor_local.afterRotation(mObjectSpace.getLocalToParent_rotation());
+	mAngularMomentum_world = mAngularVelocity_world * inertiaTensor_world.getInternal();
 }
 
 void State::setInertiaTensor_local(InertiaTensor newInertiaTensor_local) {
@@ -103,9 +105,9 @@ void State::setMassValue_local(double newMassValue_local) {
 }
 
 void State::setMassCentre_local(glm::dvec3 newMassCentre_local) {
-	updateCoordSpace3D();
 	mMass_local.setCentre(newMassCentre_local);
-	mCoMPosition_world = mObjectSpace.toParentSpace(newMassCentre_local);
+	mCoMPosition_world = mObjectSpace.toParentSpace(newMassCentre_local); //TODO: ------------------ FIX THIS
+	//updateCoordSpace3D();
 }
 
 void State::setObjectToParentTransform(CoordTransform3D objectToParent) {
