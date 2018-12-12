@@ -106,8 +106,7 @@ void State::setMassValue_local(double newMassValue_local) {
 
 void State::setMassCentre_local(glm::dvec3 newMassCentre_local) {
 	mMass_local.setCentre(newMassCentre_local);
-	mCoMPosition_world = mObjectSpace.toParentSpace(newMassCentre_local); //TODO: ------------------ FIX THIS
-	//updateCoordSpace3D();
+	mCoMPosition_world = mObjectSpace.toParentSpace(newMassCentre_local);
 }
 
 void State::setObjectToParentTransform(CoordTransform3D objectToParent) {
@@ -131,6 +130,8 @@ void State::recalcSecondaryProps() {
 	glm::dquat q(0.0, mAngularVelocity_world);
 	mSpin_world = 0.5 * q * mOrientation_world;
 	mOrientation_world = normalize(mOrientation_world);
+
+	mObjectSpace.setLocalToParent_rotation(glm::toMat4(mOrientation_world));
 
 	//Object space
 	updateCoordSpace3D();
