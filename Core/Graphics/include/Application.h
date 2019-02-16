@@ -30,6 +30,7 @@ namespace GF {
 
 		void init();
 		void run();
+		void setWindowPosition(glm::ivec2 newPosition) const { glfwSetWindowPos(mWindow.getHandle(), newPosition.x, newPosition.y); }
 
 		virtual	void onLoad() = 0;
 		virtual void onInputCheck() = 0;

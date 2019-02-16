@@ -21,15 +21,10 @@ namespace GF {
 
 	private:
 		static constexpr float mDefaultWindowToScreenScale = 0.5f;
-		
 		const char* mTitle = "";
-		
 		glm::ivec2 mDimensions = glm::vec2(-1, -1);
-		
 		GLFWwindow* mWindow = nullptr;
-		
 		GLFWmonitor* mMonitor = nullptr;
-		
 		glm::vec4 mClearColour = glm::vec4(0.5f, 0.5f, 0.5f, 1.0f);
 
 	public:

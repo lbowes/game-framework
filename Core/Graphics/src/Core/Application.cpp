@@ -23,14 +23,18 @@ namespace GF {
 		//HWND consoleWindow = GetConsoleWindow();
 		//SetWindowPos(consoleWindow, 0, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOACTIVATE);
 
-		Input::init(&mWindow);
 		//Utils::Logger::open(/*"src/ErrorLog.txt"*/);
 
 		srand((unsigned)time(NULL));
 
 		//IMGUI
 		ImGui::CreateContext();
-		ImGui_ImplGlfwGL3_Init(mWindow.getHandle(), false);
+		ImGui_ImplGlfwGL3_Init(mWindow.getHandle(), true);
+
+		// This must be called after ImGui_ImplGlfwGL3_Init, because of the order in which callback functions should be set.
+		// ImGui sets all callbacks for keys, characters, mouse etc
+		// but we want our input handling system to overwrite the key and mouse callback, but not the character callback.
+		Input::init(&mWindow);
 	}
 
 	void Application::run() {
@@ -42,11 +46,11 @@ namespace GF {
 			mLastTime = mCurrentTime;
 			mAccumulator += mFrameTime;
 
-			//IMGUI
-			ImGui_ImplGlfwGL3_NewFrame();
-
 			onInputCheck();
 			Input::update();
+
+			//IMGUI
+			ImGui_ImplGlfwGL3_NewFrame();
 
 			while (mAccumulator >= mUpdateDelta) {
 				mAccumulator -= mUpdateDelta;
