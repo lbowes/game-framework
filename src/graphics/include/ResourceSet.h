@@ -8,7 +8,7 @@
 #include "Mesh.h"
 
 namespace GF {
-	
+
 	class ResourceSet {
 	private:
 		std::vector<std::unique_ptr<Resource>> mResources;
@@ -28,7 +28,7 @@ namespace GF {
 		unsigned getResourceIndex(const std::string& resID);
 		Resource* getResource(const std::string& resID);
 		Resource* getResource(unsigned index);
-		
+
 		template <class T>
 		T* getResource(const std::string& resID);
 		template <class T>

@@ -16,7 +16,7 @@ void Testbed::onLoad() {
 
 	mWindow.setClearColour(glm::vec4(0.9607843137254902f, 0.9529411764705882f, 0.9490196078431373f, 1.0f));
 	ImGui::StyleColorsLight();
-	
+
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -80,10 +80,10 @@ void Testbed::onInputCheck() {
 
 	if (Input::isKeyPressed(GLFW_KEY_ESCAPE))
 		mWindow.close();
-	
+
 	mSteelComposite->checkInput();
 
-	//Hide/show cursor for menu interaction/camera focus respectively 
+	//Hide/show cursor for menu interaction/camera focus respectively
 	glm::vec2 windowDimensions = glm::vec2(mWindow.getDimensions().x, mWindow.getDimensions().y);
 
 	if (Input::isMouseButtonReleased(GLFW_MOUSE_BUTTON_RIGHT) && mFPVCamera->hasFocus()) {
@@ -109,7 +109,7 @@ void Testbed::onUpdate() {
 
 void Testbed::onRender() {
 	mFPVCamera->update(mWindow.getAspect(), (float)mFrameTime);
-	
+
 	mPlaneMesh->sendRenderCommand(mRenderer);
 	mSteelCubeModel1->render();
 	mSteelCubeModel2->render();
@@ -146,7 +146,7 @@ void Testbed::onLoad() {
 
 	mWindow.setClearColour(glm::vec4(0.5f, 0.3f, 0.4f, 1.0f));
 	//ImGui::StyleColorsLight();
-	
+
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -159,7 +159,7 @@ void Testbed::onLoad() {
 
 void Testbed::onInputCheck() {
 	using namespace GF;
-	
+
 	glm::vec2 mousePosition = GF::Input::getMousePosition();
 	printf("mousePosition: %f, %f\n", mousePosition.x, mousePosition.y);
 

@@ -11,12 +11,12 @@ struct Derivative {
 		dx,
 		dm,
 		dam;
-		
+
 	glm::dquat dor;
 };
 
 struct Force_world {
-	glm::dvec3	
+	glm::dvec3
 		mForce_world,
 		mApplicationPoint_local;
 
@@ -25,10 +25,10 @@ struct Force_world {
 		mApplicationPoint_local(applicationPoint_local)
 	{ }
 };
-		
+
 class RigidBody {
 	friend class RigidBodyGroup;
-		
+
 public:
 	enum class Integrator { euler, rungeKutta4 };
 
@@ -60,7 +60,7 @@ public:
 
 protected:
 	void integrate(double t, double dt);
-			
+
 	//Need to use mLastState and mLastStateTimeDelta to provide function to get acceleration.
 	glm::dvec3 getTotalForce_world() const { return mTotalForce_world; }
 	glm::dvec3 getTotalTorque_world() const { return mTotalTorque_world; }

@@ -13,7 +13,7 @@ namespace GF {
 		private:
 			static int mSeed;
 			static unsigned permutation[256];
-			static std::vector<unsigned> p;			
+			static std::vector<unsigned> p;
 			static bool permutationsInitialised;
 
 		public:

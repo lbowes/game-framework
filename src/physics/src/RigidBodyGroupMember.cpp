@@ -11,7 +11,7 @@ void RBGroupMember::operator=(const RBGroupMember& other) {
 	mMemberToGroup = other.mMemberToGroup;
 }
 
-void RBGroupMember::disconnect() { 
-	mConnected = false; 
+void RBGroupMember::disconnect() {
+	mConnected = false;
 	mRigidBody = nullptr;
 }

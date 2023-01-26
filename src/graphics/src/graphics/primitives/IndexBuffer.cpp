@@ -2,7 +2,7 @@
 
 namespace GF {
 	namespace Graphics {
-		
+
 		IndexBuffer::IndexBuffer(unsigned usage, const std::vector<unsigned>& data, const std::string& resID) :
 			Resource(resID),
 			mUsage(usage),

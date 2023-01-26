@@ -11,7 +11,7 @@ namespace GF {
 		class VertexArray {
 		private:
 			unsigned mHandle = 0;
-			
+
 			//The vertex array should *NOT* own the buffers - it simply ties them together.
 			//This way, VBOs and index buffers can be shared around to save memory on objects that use duplicate buffers.
 			IndexBuffer* mAttachedIndexBuffer = nullptr;

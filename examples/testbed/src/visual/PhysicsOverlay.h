@@ -10,8 +10,8 @@
 
 struct Marker2D {
 	enum class Type { origin, centreMass };
-	
-	glm::vec3 
+
+	glm::vec3
 		*mTarget_world,
 		mResult_NDC;
 
@@ -24,7 +24,7 @@ struct Marker2D {
 
 	void recalc(glm::mat4 viewProjection, float windowAspect) {
 		glm::vec4 clipSpace = viewProjection * glm::vec4(*mTarget_world, 1.0);
-		
+
 		if (clipSpace.x > clipSpace.w || clipSpace.x < -clipSpace.w) clipSpace.x = clipSpace.w * 2.0f;
 		if (clipSpace.y > clipSpace.w || clipSpace.y < -clipSpace.w) clipSpace.y = clipSpace.w * 2.0f;
 		if (clipSpace.z > clipSpace.w || clipSpace.z < -clipSpace.w) clipSpace.z = clipSpace.w * 2.0f;
@@ -39,10 +39,10 @@ class PhysicsOverlay {
 private:
 	GF::Graphics::Renderer mRenderer;
 	GF::ResourceSet mResourceContainer;
-	
+
 	GF::Graphics::Mesh* mMesh = nullptr;
-	GF::Graphics::VertexBuffer 
-		*mPositionVBO = nullptr,	
+	GF::Graphics::VertexBuffer
+		*mPositionVBO = nullptr,
 		*mTexCoordVBO = nullptr;
 	GF::Graphics::IndexBuffer* mIBO = nullptr;
 

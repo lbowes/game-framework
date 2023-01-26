@@ -4,7 +4,7 @@
 
 #include <glm/vec3.hpp>
 #include <glm/geometric.hpp>
-		
+
 class Spring {
 private:
 	double

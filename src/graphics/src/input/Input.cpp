@@ -6,7 +6,7 @@
 namespace GF {
 
 	Window* Input::mWindow = nullptr;
-	
+
 	bool
 		Input::mKeysDown[MAX_KEYS],
 		Input::mKeysDown_previous[MAX_KEYS],
@@ -19,10 +19,10 @@ namespace GF {
 
 	float Input::mMouseScroll = 0.0f;
 
-	glm::dvec2 
+	glm::dvec2
 		Input::mMousePosition,
 		Input::mMousePositionPrev,
-		Input::mMouseMoveDelta;	
+		Input::mMouseMoveDelta;
 
 	void Input::init(Window* window) {
 		mWindow = window;
@@ -157,7 +157,7 @@ namespace GF {
 
 	void Input::windowFocusCallback(GLFWwindow* window, int focused) {
     	mWindowFocused = focused;
-	}	
+	}
 
 	void Input::windowRefreshCallback(GLFWwindow* window) {
 		glfwSwapBuffers(window);

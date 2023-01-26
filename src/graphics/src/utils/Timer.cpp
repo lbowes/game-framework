@@ -4,9 +4,9 @@ namespace GF {
 	namespace Utils {
 
 		std::chrono::time_point<std::chrono::high_resolution_clock> Timer::mStartTime, Timer::mStopTime;
-		
-		int64_t 
-			Timer::mLatestEventDuration, 
+
+		int64_t
+			Timer::mLatestEventDuration,
 			Timer::mResolution;
 
 		std::vector<TimedEvent> Timer::mTimedEvents;
@@ -18,7 +18,7 @@ namespace GF {
 
 		void Timer::stop(const std::string& eventName, bool addToEvents) {
 			mStopTime = std::chrono::high_resolution_clock::now();
-			
+
 			switch (mResolution) {
 			case HOURS:
 				mLatestEventDuration = std::chrono::duration_cast<std::chrono::hours>(mStopTime - mStartTime).count();
@@ -43,7 +43,7 @@ namespace GF {
 			case NANOSECONDS:
 				mLatestEventDuration = std::chrono::duration_cast<std::chrono::nanoseconds>(mStopTime - mStartTime).count();
 				break;
-			
+
 			default:
 				break;
 			}

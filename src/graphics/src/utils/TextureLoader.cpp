@@ -6,10 +6,10 @@ namespace GF {
 
 		unsigned TextureLoader::loadTexture2D(const std::string& path) {
 			GLuint handle;
-			
-			int 
-				width, 
-				height, 
+
+			int
+				width,
+				height,
 				bitsPerPixel;
 
 			stbi_set_flip_vertically_on_load(1);
@@ -44,12 +44,12 @@ namespace GF {
 
 		unsigned TextureLoader::loadCubeTexture(std::vector<std::string> texturesPaths) {
 			GLuint handle;
-			
+
 			int
 				width,
 				height,
 				bitsPerPixel;
-			
+
 			unsigned char* image = nullptr;
 
 			glGenTextures(1, &handle);
@@ -67,7 +67,7 @@ namespace GF {
 				image = stbi_load(texturesPaths[i].c_str(), &width, &height, &bitsPerPixel, 4);
 
 				glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-				
+
 				if (image == nullptr)
 					Logger::log(Logger::LogType::ERROR_WARN, "TextureCube at '" + texturesPaths[i] + "' could not be loaded.");
 				else

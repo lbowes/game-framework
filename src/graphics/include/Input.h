@@ -10,11 +10,11 @@
 #define MAX_BUTTONS 16
 
 namespace GF {
-	
+
 	class Input {
 	private:
 		static Window* mWindow;
-		
+
 		static bool
 			mKeysDown[MAX_KEYS],
 			mKeysDown_previous[MAX_KEYS],
@@ -27,8 +27,8 @@ namespace GF {
 			mMouseDragging;
 
 		static float mMouseScroll;
-		
-		static glm::dvec2 
+
+		static glm::dvec2
 			mMousePosition,
 			mMousePositionPrev,
 			mMouseMoveDelta;
@@ -46,7 +46,7 @@ namespace GF {
 		static bool isMouseButtonUp(unsigned char button);
 		static bool isMouseButtonPressed(unsigned char button);
 		static bool isMouseButtonReleased(unsigned char button);
-		
+
 		static bool isControllerButtonPressed(unsigned char button);
 		static bool isControllerButtonReleased(unsigned char button);
 		static void showCursor();

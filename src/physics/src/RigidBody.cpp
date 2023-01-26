@@ -108,14 +108,14 @@ void RigidBody::euler(Derivative& changeWithTime, double t, double dt) {
 	Derivative
 		d1 = evaluate(mState, t, 0.0, Derivative()), //current derivative
 		d2 = evaluate(mState, t, dt, d1);
-	
+
 	changeWithTime.dx = d2.dx;
 	changeWithTime.dm = d2.dm;
 	changeWithTime.dor = d2.dor;
 	changeWithTime.dam = d2.dam;
 }
 
-Derivative RigidBody::evaluate(State& initial, double t, double dt, const Derivative& d) 
+Derivative RigidBody::evaluate(State& initial, double t, double dt, const Derivative& d)
 	//Takes a state and calculates the new derivatives of this state at t + dt
 {
 	State next;

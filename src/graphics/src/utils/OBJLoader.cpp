@@ -16,7 +16,7 @@ namespace GF {
 
 		void OBJLoader::loadOBJData(ResourceSet& dataHolder, Graphics::Mesh* target, const std::string& filePath) {
 			using namespace GF::Graphics;
-			
+
 			std::vector<std::string> lines = splitString(FileManager::fileToString(filePath), '\n');
 
 			VertexSet inputVertices;
@@ -27,7 +27,7 @@ namespace GF {
 			unsigned
 				lineIndex = 0,
 				loadingAnimationIndex = 0;
-				
+
 			for (const std::string& line : lines) {
 				const char* cstr = line.c_str();
 
@@ -67,11 +67,11 @@ namespace GF {
 
 					for (unsigned short vertexCount = 0; vertexCount < faceVertices.size(); vertexCount++) {
 						std::vector<std::string> vertexAttribs = splitString(faceVertices[vertexCount], '/');
-						
+
 						//It is certain that there will be at least positions
 						indexSet[vertexCount].posIndex = stoi(vertexAttribs[0]);
-						
-						//If the size is 3, then there will be 3 strings. The 2nd may or may not be a null character, but there will be 3 strings to 
+
+						//If the size is 3, then there will be 3 strings. The 2nd may or may not be a null character, but there will be 3 strings to
 						//process.
 						if (vertexAttribs.size() == 3) {
 							if (vertexAttribs[1] != "\0") indexSet[vertexCount].texCoordIndex = stoi(vertexAttribs[1]);
@@ -82,7 +82,7 @@ namespace GF {
 							indexSet[vertexCount].texCoordIndex = stoi(vertexAttribs[1]);
 						}
 					}
-					
+
 					insertVertex(vertices, indices, mapping, inputVertices, indexSet[0]);
 					insertVertex(vertices, indices, mapping, inputVertices, indexSet[1]);
 					insertVertex(vertices, indices, mapping, inputVertices, indexSet[2]);
@@ -100,17 +100,17 @@ namespace GF {
 				dataHolder.addVertexBuffer(target->getUniqueID() + ":POSITIONS", GL_STATIC_DRAW, VertexFormat(0, 3, GL_FLOAT, false), extractAttribData(vertices, AttribType::POSITION));
 				target->addBuffer(dataHolder.getResource<VertexBuffer>(target->getUniqueID() + ":POSITIONS"));
 			}
-			
+
 			if (containsTexCoords) {
 				dataHolder.addVertexBuffer(target->getUniqueID() + ":TEX_COORDS", GL_STATIC_DRAW, VertexFormat(1, 2, GL_FLOAT, false), extractAttribData(vertices, AttribType::TEXTURE_COORD));
 				target->addBuffer(dataHolder.getResource<VertexBuffer>(target->getUniqueID() + ":TEX_COORDS"));
 			}
-			
+
 			if (containsNormals) {
 				dataHolder.addVertexBuffer(target->getUniqueID() + ":NORMALS", GL_STATIC_DRAW, VertexFormat(2, 3, GL_FLOAT, false), extractAttribData(vertices, AttribType::NORMAL));
 				target->addBuffer(dataHolder.getResource<VertexBuffer>(target->getUniqueID() + ":NORMALS"));
 			}
-			
+
 			dataHolder.addIndexBuffer(target->getUniqueID() + ":INDICES", GL_STATIC_DRAW, indices);
 			target->addIndexBuffer(dataHolder.getResource<IndexBuffer>(target->getUniqueID() + ":INDICES"));
 		}
@@ -123,9 +123,9 @@ namespace GF {
 			else {
 				mapping[indexSet] = (int)vertices.size();
 				indices.push_back((unsigned)vertices.size());
-				
+
 				Vertex vertex;
-				
+
 				if (indexSet.posIndex > 0) vertex.position = inputVertices.positions[indexSet.posIndex - 1];
 				if (indexSet.normalIndex > 0) vertex.normal = inputVertices.normals[indexSet.normalIndex - 1];
 				if (indexSet.texCoordIndex > 0) vertex.textureCoord = inputVertices.textureCoords[indexSet.texCoordIndex - 1];

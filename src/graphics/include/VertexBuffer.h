@@ -13,10 +13,10 @@ namespace GF {
 
 		class VertexBuffer : public Resource {
 		private:
-			unsigned 
+			unsigned
 				mHandle = 0,
 				mUsage = 0;
-			
+
 			std::unique_ptr<VertexFormat> mFormat;
 
 		public:

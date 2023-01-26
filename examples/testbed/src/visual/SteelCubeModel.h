@@ -12,7 +12,7 @@ private:
 	SteelCube& mDataSource;
 	GF::Graphics::Renderer& mRenderer;
 	GF::ResourceSet& mResourceContainer;
-	
+
 	GF::Graphics::Shader& mShader;
 	GF::Graphics::Mesh* mMesh = nullptr;
 

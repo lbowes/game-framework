@@ -16,14 +16,14 @@ namespace GF {
 			Texture* mTexture = nullptr;
 			Shader* mShader = nullptr;
 			glm::mat4 mModelTransform;
-			
+
 			std::unique_ptr<VertexArray> mVAO;
 			bool mVisible = true;
 
 		public:
 			Mesh(const std::string& resID, unsigned geometryType = GL_TRIANGLES, Texture* texture = nullptr, Shader* shader = nullptr, glm::mat4 modelTransform = glm::mat4(1.0f));
 			~Mesh() = default;
-			
+
 			void addBuffer(VertexBuffer* buffer);
 			void addIndexBuffer(IndexBuffer* indexBuffer);
 			void sendRenderCommand(Renderer& renderer);

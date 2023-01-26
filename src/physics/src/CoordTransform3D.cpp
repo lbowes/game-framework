@@ -53,11 +53,11 @@ CoordTransform3D lerp(const CoordTransform3D &a, const CoordTransform3D &b, doub
 	CoordTransform3D output;
 
 	output.mTranslation_localToParent = glm::interpolate(a.mTranslation_localToParent, b.mTranslation_localToParent, x);
-	
-	output.mRotation_localToParent = 
+
+	output.mRotation_localToParent =
 		glm::mat4_cast(
 			glm::slerp(
-				glm::quat_cast(a.mRotation_localToParent), 
+				glm::quat_cast(a.mRotation_localToParent),
 				glm::quat_cast(b.mRotation_localToParent),
 				x
 			)

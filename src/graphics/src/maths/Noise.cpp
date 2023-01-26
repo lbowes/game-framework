@@ -6,7 +6,7 @@ namespace GF {
 		std::vector<unsigned> Noise::p;
 		bool Noise::permutationsInitialised = false;
 
-		unsigned Noise::permutation[256] = { 151,160,137,91,90,15,			
+		unsigned Noise::permutation[256] = { 151,160,137,91,90,15,
 			131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23,
 			190, 6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,35,11,32,57,177,33,
 			88,237,149,56,87,174,20,125,136,171,168, 68,175,74,165,71,134,139,48,27,166,
@@ -28,14 +28,14 @@ namespace GF {
 			}
 		}
 
-		double Noise::perlin(double x, double z) {		
+		double Noise::perlin(double x, double z) {
 			if (!permutationsInitialised)
 				initPermutations();
 			permutationsInitialised = true;
-			
-			int xi = static_cast<int>(floor(x)) & 255;	
-			int zi = static_cast<int>(floor(z)) & 255;						
-			
+
+			int xi = static_cast<int>(floor(x)) & 255;
+			int zi = static_cast<int>(floor(z)) & 255;
+
 			double xf = x < 0 ? fabs(floor(x) - x) : x - floor(x);
 			double zf = z < 0 ? fabs(floor(z) - z) : z - floor(z);
 
@@ -53,9 +53,9 @@ namespace GF {
 			bbb = p[p[p[xi + 1] + 1] + zi + 1];
 
 			double x1, x2, y1, y2;
-			x1 = lerp(u, 
+			x1 = lerp(u,
 				grad(aaa, xf, 0, zf),
-				grad(baa, xf - 1, 0, zf));								
+				grad(baa, xf - 1, 0, zf));
 			x2 = lerp(u,
 				grad(aba, xf, -1, zf),
 				grad(bba, xf - 1, -1, zf));
@@ -88,7 +88,7 @@ namespace GF {
 
 			return sum;
 #else
-			double 
+			double
 				perlinResult = perlin(x, z),
 				sum = perlinResult,
 				amp = 1.0f;
@@ -119,16 +119,16 @@ namespace GF {
 		}
 
 		double Noise::grad(int hash, double x, double y, double z) {
-			int h = hash & 15;					
-			double u = h < 8 ? x : y;			
+			int h = hash & 15;
+			double u = h < 8 ? x : y;
 
-			double v;							
-												
-			if (h < 4)								 
+			double v;
+
+			if (h < 4)
 				v = y;
 			else if (h == 12 || h == 14)
 				v = x;
-			else 												
+			else
 				v = z;
 
 			return ((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v);

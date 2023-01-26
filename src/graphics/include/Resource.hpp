@@ -9,7 +9,7 @@ namespace GF {
 	class Resource {
 	private:
 		std::string mUniqueId = "";
-			
+
 	public:
 		Resource(const std::string& uid) :
 			mUniqueId(uid)

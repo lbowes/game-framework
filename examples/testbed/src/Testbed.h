@@ -18,7 +18,7 @@ private:
 	std::unique_ptr<GF::Graphics::Mesh> mPlaneMesh;
 	GF::Graphics::Renderer mRenderer;
 	std::unique_ptr<FPVCamera> mFPVCamera;
-	
+
 	std::unique_ptr<SteelCubeModel>
 		mSteelCubeModel1,
 		mSteelCubeModel2;
@@ -26,7 +26,7 @@ private:
 	std::unique_ptr<SteelComposite> mSteelComposite;
 
 	std::unique_ptr<PhysicsOverlay> mPhysicsOverlay;
-	
+
 	glm::vec3 testVector = glm::vec3(0.0, 20.0, 0.0);
 
 public:

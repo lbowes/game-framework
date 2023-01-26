@@ -25,9 +25,9 @@ namespace GF {
 		class Timer {
 		private:
 			static std::chrono::time_point<std::chrono::high_resolution_clock> mStartTime, mStopTime;
-			
+
 			static int64_t
-				mLatestEventDuration, 
+				mLatestEventDuration,
 				mResolution;
 
 			static std::vector<TimedEvent> mTimedEvents;

@@ -15,11 +15,11 @@ private:
 		angularMomentum = glm::dvec3(0.0);
 
 	glm::dquat orientation = glm::dquat();
-		
+
 	Mass mass_local;
-		
+
 	InertiaTensor inertiaTensor_local;
-		
+
 	CoordTransform3D localToWorld;
 
 public:
@@ -30,7 +30,7 @@ public:
 	//Therefore loadRigidBodyState() only requires a State instance, not a RigidBody.
 	static void load(const RigidBodyStateSnapshot& source, State& dest);
 	static void save(const RigidBody& source, RigidBodyStateSnapshot& dest);
-	 
+
 	static void lerp(const RigidBodyStateSnapshot& a, const RigidBodyStateSnapshot& b, double x, RigidBodyStateSnapshot& dest);
 
 };

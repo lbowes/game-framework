@@ -10,12 +10,12 @@
 class FPVCamera {
 private:
 	GF::PerspectiveCamera mPerspectiveCamera;
-	
+
 	bool mHasFocus = false;
 
 	const float
-		mMovementSpeed = 100.0f,        //100.0f  
-		mMovementFriction = 10.5f,       //7.0f
+		mMovementSpeed = 100.0f,        //100.0f
+		mMovementFriction = 10.5f,      //7.0f
 		mZoomSensitivity = 0.1f,        //0.1f
 		mLookAroundSensitivity = 0.05f; //0.05f
 
@@ -28,7 +28,7 @@ private:
 		mVelocity_OGL = glm::vec3(0.0f),
 		mDirection_OGL;
 
-	ImVec2 
+	ImVec2
 		mMousePosition,
 		mPrevMousePosition;
 
@@ -38,7 +38,7 @@ public:
 
 	void update(float windowAspect, float dt);
 	void handleInput(float dt);
-	
+
 	inline GF::Camera& getInternalCamera() { return mPerspectiveCamera; }
 	inline bool hasFocus() const { return mHasFocus; }
 	inline void setFocus(bool focus) { mHasFocus = focus; }

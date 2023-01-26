@@ -10,11 +10,11 @@ namespace GF {
 		class VertexFormat {
 		private:
 			unsigned char mNumComponents = -1;
-			
+
 			unsigned
 				mAttribIndex = 0,
 				mType = GL_FLOAT;
-			
+
 			bool mNormalized = false;
 
 		public:

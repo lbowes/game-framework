@@ -17,7 +17,7 @@ namespace GF {
 				Utils::Logger::log(Utils::Logger::LogType::ERROR_WARN, "Tried to create Shader '" + resID + "' before OpenGL was initialised.");
 				return;
 			}
-			
+
 			int vertHandle = compileShader(GL_VERTEX_SHADER, Utils::FileManager::fileToString(vertPath));
 			mCompiledShaderHandles.push_back(vertHandle);
 
@@ -32,30 +32,30 @@ namespace GF {
 			createProgram();
 		}
 
-		void Shader::bind() const { 
+		void Shader::bind() const {
 			if (mCurrentlyBound == this->mProgramHandle)
 				return;
-			
+
 			glUseProgram(mProgramHandle);
 			mCurrentlyBound = this->mProgramHandle;
 		}
 
-		void Shader::unbind() const { 
-			glUseProgram(0); 
-			mCurrentlyBound = 0; 
+		void Shader::unbind() const {
+			glUseProgram(0);
+			mCurrentlyBound = 0;
 		}
 
 		void Shader::addUniform(const std::string& name) {
 			if(mUniformLocations.find(name) != mUniformLocations.end())
 				return;
-			
+
 			bind();
 			int location = glGetUniformLocation(mProgramHandle, name.c_str());
 			if (location == -1) {
 				Utils::Logger::log(Utils::Logger::LogType::ERROR_WARN, "Uniform '" + name + "' does not exist or is not used in Shader '" + getUniqueID() + "'.");
 				return;
 			}
-			
+
 			mUniformLocations.insert({ name, location });
 		}
 
@@ -117,7 +117,7 @@ namespace GF {
 
 			if (!compileSuccess) {
 				glGetShaderInfoLog(shaderHandle, 512, NULL, infoLog);
-				Utils::Logger::log(Utils::Logger::LogType::ERROR_WARN, "Shader '" + getUniqueID() + "'' compilation failure: " + std::string(infoLog)); 
+				Utils::Logger::log(Utils::Logger::LogType::ERROR_WARN, "Shader '" + getUniqueID() + "'' compilation failure: " + std::string(infoLog));
 			}
 
 			return shaderHandle;

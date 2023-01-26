@@ -56,7 +56,7 @@ void State::setMomentum_world(glm::dvec3 newMomentum_world) {
 
 void State::setAngularMomentum_world(glm::dvec3 newAngularMomentum_world) {
 	mAngularMomentum_world = newAngularMomentum_world;
-	
+
 	if (mInertiaTensor_local != glm::dmat3(0.0))
 		mAngularVelocity_world = mOrientation_world * (mInertiaTensor_local.inverse() * (inverse(mOrientation_world) * newAngularMomentum_world));
 }
@@ -68,7 +68,7 @@ void State::setOrientation_world(glm::dquat newOrientation_world) {
 
 	if (mInertiaTensor_local != glm::dmat3(0.0))
 		mAngularVelocity_world = mOrientation_world * (mInertiaTensor_local.inverse() * (inverse(mOrientation_world) * mAngularMomentum_world));
-	
+
 	glm::dquat q(0.0, mAngularVelocity_world);
 	mSpin_world = 0.5 * q * mOrientation_world;
 }
@@ -80,14 +80,14 @@ void State::setVelocity_world(glm::dvec3 newVelocity_world) {
 
 void State::setAngularVelocity_world(glm::dvec3 newAngularVelocity_world) {
 	mAngularVelocity_world = newAngularVelocity_world;
-	
+
 	InertiaTensor inertiaTensor_world = mInertiaTensor_local.afterRotation(mObjectSpace.getLocalToParent_rotation());
 	mAngularMomentum_world = mAngularVelocity_world * inertiaTensor_world.getInternal();
 }
 
 void State::setInertiaTensor_local(InertiaTensor newInertiaTensor_local) {
 	mInertiaTensor_local = newInertiaTensor_local;
-	
+
 	if (newInertiaTensor_local != glm::dmat3(0.0) && mOrientation_world != glm::dquat())
 		mAngularVelocity_world = mOrientation_world * (mInertiaTensor_local.inverse() * (inverse(mOrientation_world) * mAngularMomentum_world));
 }

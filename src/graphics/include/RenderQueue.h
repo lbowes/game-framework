@@ -7,11 +7,11 @@
 
 namespace GF {
 	namespace Graphics {
-		
+
 		class RenderQueue {
 		private:
 			std::vector<RenderCommand> mRenderCommands;
-			
+
 			//A vector full of indices into the mRenderCommands vector, that denote the changes in the shader bound.
 			//Blocks of commands that use the same shader will be created when the queue is sorted. This vector
 			//indicates where these blocks begin and end, for texture batching.

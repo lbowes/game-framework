@@ -14,7 +14,7 @@ namespace GF {
 	void Model3D::sendRenderCommands(Graphics::Renderer& renderer) {
 		if (!mVisible)
 			return;
-		
+
 		for (Graphics::Mesh* m : mMeshes) {
 			m->setModelTransform(m->getModelTransform() * mModelTransform);
 			m->sendRenderCommand(renderer);

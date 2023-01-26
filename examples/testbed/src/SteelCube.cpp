@@ -7,7 +7,7 @@ SteelCube::SteelCube(glm::dvec3 position_world, double mass) :
 	mState.setMassValue_local(mass);
 	mState.setMassCentre_local({ 0.0, 0.5, 0.0 });
 	mState.setInertiaTensor_local(InertiaTensor::cube(mass, 1.0));
-	
+
 	mState.setPosition_world(position_world);
 }
 

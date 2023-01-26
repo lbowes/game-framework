@@ -29,7 +29,7 @@ namespace GF {
 			VertexFormat* format = nullptr;
 			for (VertexBuffer* b : mAttachedBuffers) {
 				format = b->getFormat();
-				
+
 				b->bind();
 				glVertexAttribPointer(format->getAttribIndex(), format->getNumComponents(), format->getType(), format->isNormalized(), 0, (GLvoid*)0);
 				glEnableVertexAttribArray(format->getAttribIndex());

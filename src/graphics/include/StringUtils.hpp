@@ -11,7 +11,7 @@ namespace GF {
 
 		static std::vector<std::string> splitString(const std::string& str, char delimiter) {
 			using namespace std;
-			
+
 			vector<string> result;
 			string item;
 			stringstream stream(str);

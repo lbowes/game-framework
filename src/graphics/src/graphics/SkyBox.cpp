@@ -42,16 +42,16 @@ namespace GF {
 			};
 
 			mMesh = std::make_unique<Mesh>("skyBoxMesh", GL_TRIANGLES, mTexture.get(), mShader.get(), glm::mat4(1));
-			
+
 			mShader = std::make_unique<Shader>(vertPath, fragPath, "skyBoxShader");
 			mMesh->setShader(mShader.get());
-			
+
 			mTexture = std::make_unique<TextureCube>(textures, "skyBoxTexture");
 			mMesh->setTexture(mTexture.get());
-			
+
 			mPositions = std::make_unique<VertexBuffer>(GL_STATIC_DRAW, VertexFormat(0, 3, GL_FLOAT, false), positions, "skyBoxPositions");
 			mMesh->addBuffer(mPositions.get());
-			
+
 			mIndices = std::make_unique<IndexBuffer>(GL_STATIC_DRAW, indices, "skyBoxIndices");
 			mMesh->addIndexBuffer(mIndices.get());
 
@@ -126,5 +126,5 @@ namespace GF {
 			mMesh->getShader()->addUniform("projectionMatrix");
 		}
 
-	}																   
+	}
 }

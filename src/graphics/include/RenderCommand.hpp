@@ -6,7 +6,7 @@
 
 namespace GF {
 	namespace Graphics {
-		
+
 		class Texture;
 		class Shader;
 		class VertexArray;

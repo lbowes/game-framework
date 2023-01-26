@@ -16,7 +16,7 @@ namespace GF {
 	namespace Utils {
 
 		struct Vertex {
-			glm::vec3 
+			glm::vec3
 				position,
 				normal;
 
@@ -47,7 +47,7 @@ namespace GF {
 		class OBJLoader {
 		public:
 			enum class AttribType { POSITION, TEXTURE_COORD, NORMAL };
-			
+
 		public:
 			static void loadOBJData(ResourceSet& dataHolder, Graphics::Mesh* target, const std::string& filePath);
 

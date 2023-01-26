@@ -11,7 +11,7 @@ private:
 	glm::dmat3 mInternal = glm::mat3(1.0f);
 
 public:
-	InertiaTensor(); //Point mass                            
+	InertiaTensor(); //Point mass
 	InertiaTensor(glm::dmat3 mat);
 	~InertiaTensor() = default;
 
@@ -30,7 +30,7 @@ public:
 	InertiaTensor inverse() const { return glm::inverse(mInternal); }
 	void reset() { mInternal = glm::dmat3(0.0); }
 	void rotate(const glm::dmat3 rotationMatrix);
-	
+
 	friend bool operator==(const InertiaTensor& l, const InertiaTensor& r);
 	friend bool operator!=(const InertiaTensor& l, const InertiaTensor& r);
 	friend InertiaTensor operator+(const InertiaTensor& l, const InertiaTensor& r);

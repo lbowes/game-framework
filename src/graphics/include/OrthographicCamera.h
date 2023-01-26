@@ -8,10 +8,10 @@ namespace GF {
 
 	class OrthographicCamera : public Camera {
 	private:
-		float 
-			mLeft = 0.0f, 
-			mRight = 0.0f, 
-			mTop = 0.0f, 
+		float
+			mLeft = 0.0f,
+			mRight = 0.0f,
+			mTop = 0.0f,
 			mBottom = 0.0f;
 
 	public:

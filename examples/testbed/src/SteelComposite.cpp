@@ -14,7 +14,7 @@ SteelComposite::SteelComposite(const GF::CoordTransform3D& toWorld) :
 void SteelComposite::update(double t, double dt) {
 	mSteelCube1.update(t, dt);
 	mSteelCube2.update(t, dt);
-	
+
 	RigidBodyGroup::update(t, dt);
 	mOrigin = mState.getObjectSpace().toParentSpace();
 	mCentreMass = mState.getObjectSpace().toParentSpace(mState.getMass_local().getCentre());
@@ -25,7 +25,7 @@ void SteelComposite::update(double t, double dt) {
 void SteelComposite::checkInput() {
 	mSteelCube1.checkInput();
 	mSteelCube2.checkInput();
-	
+
 	if (GF::Input::isKeyPressed(GLFW_KEY_ENTER)) {
 		mSubBodies[0].disconnect();
 		mSubBodies[1].disconnect();
@@ -69,6 +69,6 @@ void SteelComposite::basicCollision() {
 }
 
 void SteelComposite::assemble() {
-	addBody(mSteelCube1, GF::CoordTransform3D({ 0.0, 0.0, 0.0 }));	
+	addBody(mSteelCube1, GF::CoordTransform3D({ 0.0, 0.0, 0.0 }));
 	addBody(mSteelCube2, GF::CoordTransform3D({ 0.0, 4.0, 0.0 }));
 }

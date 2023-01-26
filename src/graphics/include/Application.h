@@ -15,7 +15,7 @@ namespace GF {
 		ResourceSet mResourceSet;
 
 		const double mUpdateDelta = 1.0 / 2000.0;
-		
+
 		double
 			mCurrentTime = 0.0,
 			mLastTime = 0.0,
@@ -23,7 +23,7 @@ namespace GF {
 			mAccumulator = 0.0;
 
 		bool mRunning = true;
-		
+
 	public:
 		Application(const std::string& windowTitle = "Application", const std::string& iconPath = "", glm::ivec2 windowDimensions = glm::ivec2(-1, -1));
 		virtual ~Application();

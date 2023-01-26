@@ -6,7 +6,7 @@ namespace GF {
 
 		Texture2D::Texture2D(const std::string& path, const std::string& resID) :
 			Resource(resID)
-		{ 
+		{
 			mHandle = Utils::TextureLoader::loadTexture2D(path);
 		}
 

@@ -1,6 +1,6 @@
 #include "RigidBodyStateSnapshot.h"
 
-void RigidBodyStateSnapshot::load(const RigidBodyStateSnapshot& source, State& dest) 
+void RigidBodyStateSnapshot::load(const RigidBodyStateSnapshot& source, State& dest)
 	//Initialises target State object ('dest') based on RigidBodyStateSnapshot object ('source')
 {
 	dest.setCoMPosition_world(source.CoMPosition_world);
@@ -14,7 +14,7 @@ void RigidBodyStateSnapshot::load(const RigidBodyStateSnapshot& source, State& d
 	dest.setObjectToParentTransform(source.localToWorld);
 }
 
-void RigidBodyStateSnapshot::save(const RigidBody& source, RigidBodyStateSnapshot& dest) 
+void RigidBodyStateSnapshot::save(const RigidBody& source, RigidBodyStateSnapshot& dest)
 	//Saves a target RigidBody object ('source') into a RigidBodyStateSnapshot object ('dest')
 {
 	const State& s = source.getState();
@@ -23,7 +23,7 @@ void RigidBodyStateSnapshot::save(const RigidBody& source, RigidBodyStateSnapsho
 	dest.velocity = s.getVelocity_world();
 	dest.acceleration = source.getAccel_world();
 	dest.momentum = s.getMomentum_world();
-	dest.orientation = s.getOrientation_world();			
+	dest.orientation = s.getOrientation_world();
 	dest.angularVelocity = s.getAngularVelocity_world();
 	dest.angularMomentum = s.getAngularMomentum_world();
 	dest.mass_local = s.getMass_local();
@@ -31,7 +31,7 @@ void RigidBodyStateSnapshot::save(const RigidBody& source, RigidBodyStateSnapsho
 	dest.localToWorld = s.getObjectSpace();
 }
 
-void RigidBodyStateSnapshot::lerp(const RigidBodyStateSnapshot& a, const RigidBodyStateSnapshot& b, double x, RigidBodyStateSnapshot& dest) 
+void RigidBodyStateSnapshot::lerp(const RigidBodyStateSnapshot& a, const RigidBodyStateSnapshot& b, double x, RigidBodyStateSnapshot& dest)
 	//Linearly interpolates between two RigidBodyStateSnapshot objects ('a' and 'b') and stores the result in 'dest'
 {
 	dest.CoMPosition_world = glm::lerp(a.CoMPosition_world, b.CoMPosition_world, x);

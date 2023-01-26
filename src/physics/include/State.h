@@ -15,21 +15,21 @@
 class State {
 	friend class RigidBody;
 private:
-	//Primary state	
+	//Primary state
 	glm::dvec3
 		mCoMPosition_world,
 		mMomentum_world,
 		mAngularMomentum_world;
-			
+
 	glm::dquat mOrientation_world;
 
 	//Secondary state
 	glm::dvec3
 		mVelocity_world,
 		mAngularVelocity_world;
-			
+
 	glm::dquat mSpin_world;
-			
+
 	CoordTransform3D mObjectSpace;
 
 	//Tertiary state
@@ -39,7 +39,7 @@ private:
 public:
 	State() = default;
 	void operator=(const State& other);
-	~State() = default;				 
+	~State() = default;
 
 	void reset();
 
@@ -52,10 +52,10 @@ public:
 	InertiaTensor getInertiaTensor_local() const { return mInertiaTensor_local; }
 	Mass getMass_local() const { return mMass_local; }
 	const CoordTransform3D& getObjectSpace() const { return mObjectSpace; }
-			
+
 	glm::dvec3 velocityAtWorldPoint_world(glm::dvec3 position_world) const;
 	glm::dvec3 velocityAtLocalPoint_world(glm::dvec3 position_local) const;
-			
+
 	void setPosition_world(glm::dvec3 newPosition_world);
 	void setCoMPosition_world(glm::dvec3 newCoMPosition_world);
 	void setMomentum_world(glm::dvec3 newMomentum_world);

@@ -12,7 +12,7 @@ void PhysicsOverlay::render(glm::mat4 viewProjection, float windowAspect, glm::v
 
 	if (!mMarkers.empty()) {
 		updateMarkers(viewProjection, windowAspect);
-	
+
 		mMesh->sendRenderCommand(mRenderer);
 		glClear(GL_DEPTH_BUFFER_BIT);
 		mRenderer.flush();
@@ -58,7 +58,7 @@ void PhysicsOverlay::load(float windowAspect) {
 	VertexFormat
 		vertPosFormat(0, 3, GL_FLOAT, false),
 		vertTexCoordFormat(1, 2, GL_FLOAT, false);
-	
+
 	mPositionVBO = mResourceContainer.addVertexBuffer("overlayVBO", GL_STATIC_DRAW, vertPosFormat, mPositions);
 	mTexCoordVBO = mResourceContainer.addVertexBuffer("overlayTexCoords", GL_STATIC_DRAW, vertTexCoordFormat, mTexCoords);
 	mIBO = mResourceContainer.addIndexBuffer("overlayIndices", GL_STATIC_DRAW, mIndices);

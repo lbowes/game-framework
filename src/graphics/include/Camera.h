@@ -19,11 +19,11 @@ namespace GF {
 	class Camera {
 	private:
 		static unsigned mNumCameras;
-	
+
 	protected:
-		float 
+		float
 			mAspect = 0.0f,
-			mNear = 0.1f, 
+			mNear = 0.1f,
 			mFar = 1000.0f,
 			mFOVY = 0.0f;
 
@@ -34,12 +34,12 @@ namespace GF {
 			mFixedFront,
 			mUp,
 			mFixedUp;
-		
-		glm::mat4 
-			mView, 
+
+		glm::mat4
+			mView,
 			mProjection;
 
-	public:		 
+	public:
 		Camera(glm::vec3 position, glm::vec3 front, glm::vec3 up, float near, float far, float aspect, float FOVY = DEFAULT_FOV);
 		void operator=(const Camera& other);
 		~Camera() = default;

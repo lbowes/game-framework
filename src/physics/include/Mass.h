@@ -22,7 +22,7 @@ public:
 	void lerp(const Mass &b, double x);
 	Mass operator+=(const Mass& other);
 	Mass operator-=(const Mass& other);
-	
+
 	double getValue() const { return mValue; }
 	glm::dvec3 getCentre() const { return mCentre; }
 	void setCentre(glm::dvec3 newCentre) { mCentre = newCentre; }
@@ -35,7 +35,7 @@ public:
 	friend Mass operator+(const Mass& l, const Mass& r);
 	friend Mass operator-(const Mass& l, const Mass& r);
 	friend Mass lerp(const Mass &a, const Mass &b, double x);
-			
+
 };
 
 bool operator==(const Mass& l, const Mass& r);

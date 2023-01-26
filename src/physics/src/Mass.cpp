@@ -93,7 +93,7 @@ Mass operator-(const Mass& l, const Mass& r){
 
 Mass lerp(const Mass &a, const Mass &b, double x) {
 	Mass output;
-	
+
 	output.mCentre = glm::lerp(a.mCentre, b.mCentre, x);
 	output.mValue = a.mValue + (b.mValue - a.mValue) * x;
 

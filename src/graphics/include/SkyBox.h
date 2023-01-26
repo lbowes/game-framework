@@ -7,7 +7,7 @@
 
 namespace GF {
 	class ResourceSet;
-	
+
 	namespace Graphics {
 		class Shader;
 		class Renderer;

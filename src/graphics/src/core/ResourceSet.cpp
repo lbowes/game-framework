@@ -14,7 +14,7 @@ namespace GF {
 			return getResource<Graphics::Texture2D>(resID);
 		}
 	}
-	
+
 	Graphics::TextureCube* ResourceSet::addTextureCube(const std::string& resID, const std::vector<std::string>& textures) {
 		if (!resourceAdded(resID)) {
 			mResources.push_back(std::make_unique<Graphics::TextureCube>(textures, resID));
@@ -25,7 +25,7 @@ namespace GF {
 			return getResource<Graphics::TextureCube>(resID);
 		}
 	}
-	
+
 	Graphics::Shader* ResourceSet::addShader(const std::string& resID, const std::string& vertPath, const std::string& fragPath, const std::string& geomPath) {
 		if (!resourceAdded(resID)) {
 			mResources.push_back(std::make_unique<Graphics::Shader>(resID, vertPath, fragPath, geomPath));
@@ -36,7 +36,7 @@ namespace GF {
 			return getResource<Graphics::Shader>(resID);
 		}
 	}
-	
+
 	Graphics::VertexBuffer* ResourceSet::addVertexBuffer(const std::string& resID, unsigned usage, const Graphics::VertexFormat& format, const std::vector<float>& data) {
 		if (!resourceAdded(resID)) {
 			mResources.push_back(std::make_unique<Graphics::VertexBuffer>(usage, format, data, resID));
@@ -47,7 +47,7 @@ namespace GF {
 			return getResource<Graphics::VertexBuffer>(resID);
 		}
 	}
-	
+
 	Graphics::IndexBuffer* ResourceSet::addIndexBuffer(const std::string& resID, unsigned usage, const std::vector<unsigned>& data) {
 		if (!resourceAdded(resID)) {
 			mResources.push_back(std::make_unique<Graphics::IndexBuffer>(usage, data, resID));
@@ -75,7 +75,7 @@ namespace GF {
 			mResources.push_back(std::make_unique<Graphics::Mesh>(resID, geometryType, texture, shader, modelTransform));
 			Graphics::Mesh* justAdded = static_cast<Graphics::Mesh*>(mResources.back().get());
 			Utils::OBJLoader::loadOBJData(*this, justAdded, path);
-			
+
 			return justAdded;
 		}
 		else {
@@ -92,16 +92,16 @@ namespace GF {
 
 		return -1;
 	}
-	
+
 	Resource* ResourceSet::getResource(const std::string& resID) {
 		Resource* temp = nullptr;
-		
+
 		for (const auto& r : mResources) {
 			temp = r.get();
 			if (temp->getUniqueID() == resID)
 				return temp;
 		}
-		
+
 		Utils::Logger::log(Utils::Logger::LogType::ERROR_HALT, "Could not find resource with ID '" + resID + "'.");
 		return nullptr;
 	}
@@ -109,7 +109,7 @@ namespace GF {
 	Resource* ResourceSet::getResource(unsigned index) {
 		return (index >= 0 && index < mResources.size()) ? mResources[index].get() : nullptr;
 	}
-	
+
 	template <class T>
 	T* ResourceSet::getResource(const std::string& resID) {
 		Resource* temp = nullptr;
@@ -151,5 +151,5 @@ namespace GF {
 	template Graphics::VertexBuffer* ResourceSet::getResource<Graphics::VertexBuffer>(const std::string& resID);
 	template Graphics::IndexBuffer* ResourceSet::getResource<Graphics::IndexBuffer>(const std::string& resID);
 	template Graphics::Mesh* ResourceSet::getResource<Graphics::Mesh>(const std::string& resID);
-	
+
 }

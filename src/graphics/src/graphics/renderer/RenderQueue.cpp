@@ -32,7 +32,7 @@ namespace GF {
 				else
 					mShaderBoundaries.push_back(i + 1);
 			}
-		
+
 			//Sort by texture...
 			for (unsigned i = 1; i < mShaderBoundaries.size(); i++) {
 				for (unsigned j = mShaderBoundaries[i - 1]; j < mShaderBoundaries[i]; j++) {

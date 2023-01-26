@@ -5,7 +5,7 @@ namespace GF {
 
 	bool Window::mOpenGLInitialised = false;
 
-	Window::Window(const std::string& title, glm::ivec2 dimensions) : 
+	Window::Window(const std::string& title, glm::ivec2 dimensions) :
 		mTitle(title.c_str()),
 		mDimensions(dimensions)
 	{
@@ -18,8 +18,8 @@ namespace GF {
 		glfwTerminate();
 	}
 
-	void Window::setDimensions(glm::ivec2 dimensions) { 
-		mDimensions = dimensions; 
+	void Window::setDimensions(glm::ivec2 dimensions) {
+		mDimensions = dimensions;
 	}
 
 	void Window::setIcon(const std::string& iconPath) {
@@ -53,7 +53,7 @@ namespace GF {
 		mMonitor = glfwGetPrimaryMonitor();
 
 		const glm::ivec2 monitorResolution = getMonitorResolution();
-		
+
 		//Default dimensions initialised
 		if(mDimensions == glm::ivec2(-1, -1)) {
 			mDimensions.x = monitorResolution.x * mDefaultWindowToScreenScale;

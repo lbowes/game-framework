@@ -1,7 +1,7 @@
 #include "Camera.h"
 
 namespace GF {
-	
+
 	unsigned Camera::mNumCameras = 0;
 
 	Camera::Camera(glm::vec3 position, glm::vec3 front, glm::vec3 up, float near, float far, float aspect, float FOVY) :

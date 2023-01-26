@@ -2,7 +2,7 @@
 
 namespace GF {
 	namespace Utils {
-		
+
 		std::ofstream Logger::mErrorLogFile;
 		bool Logger::mLogToErrorFile = false;
 
@@ -25,7 +25,7 @@ namespace GF {
 					printf("\e[38;2;255;255;0mGF_WARNING:");
 					printf("\e[0m %s\n", message.c_str());
 					break;
-				
+
 				case LogType::ERROR_WARN:
 					printf("\e[38;2;255;0;0mGF_WARNING:");
 					printf("\e[0m %s\n", message.c_str());
@@ -38,7 +38,7 @@ namespace GF {
 					break;
 			}
 
-			if (mLogToErrorFile) 
+			if (mLogToErrorFile)
 				mErrorLogFile << message << std::endl;
 		}
 

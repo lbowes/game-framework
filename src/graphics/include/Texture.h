@@ -5,7 +5,7 @@
 #include "TextureLoader.h"
 
 namespace GF {
-	namespace Graphics {				 
+	namespace Graphics {
 
 		class Texture {
 		protected:
@@ -18,7 +18,7 @@ namespace GF {
 			virtual ~Texture() = default;
 
 			inline int getHandle() const { return mHandle; }
-			
+
 			virtual void bind() = 0;
 			virtual void unbind() const = 0;
 

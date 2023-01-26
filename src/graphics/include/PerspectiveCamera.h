@@ -12,7 +12,7 @@ namespace GF {
 		~PerspectiveCamera() = default;
 
 		inline float getHorizontalFOV() { return mFOVY * mAspect; }
-	
+
 	private:
 		void updateProjection();
 

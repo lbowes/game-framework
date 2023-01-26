@@ -65,7 +65,7 @@ namespace GF {
 		mWindow.clear();
 
 		onRender();
-		
+
 		//IMGUI on top of everything else
 		GLint mode[2];
 		glGetIntegerv(GL_POLYGON_MODE, mode);
