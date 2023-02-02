@@ -1,8 +1,6 @@
 # Game-Framework
 A simple game framework made using C++ and OpenGL. Development started July 2016.
 
-![](GameFrameworkDemo_shadow.png)
-
 ## Aim
 This project was created to provide a platform on which to learn about graphics programming, specifically OpenGL. It has also introduced/involved 
 other topics in game engine development such as procedural generation, 3D modelling and physics simulation.
