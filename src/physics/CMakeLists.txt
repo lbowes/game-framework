@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.17)
+
 project(game-framework-physics)
 
 ADD_LIBRARY(game-framework-physics STATIC
@@ -11,6 +13,6 @@ ADD_LIBRARY(game-framework-physics STATIC
     src/InertiaTensor.cpp
 )
 
-target_include_directories(game-framework-graphics PRIVATE
+target_include_directories(game-framework-physics PRIVATE
     include/
 )
