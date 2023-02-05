@@ -30,7 +30,7 @@ jobs:
       run: cmake -S ${{github.workspace}}/src/physics -B ${{github.workspace}}/src/physics/build
 
     - name: Make
-      working-directory: ${{github.workspace}}/build
+      working-directory: ${{github.workspace}}/src/physics/build
       run: make
 
     #- name: Test
