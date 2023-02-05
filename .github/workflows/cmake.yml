@@ -27,7 +27,7 @@ jobs:
 
     - name: Build
       # Build your program with the given configuration
-      run: cmake -S ${{github.workspace}}/src/physics -B ${{github.workspace}}/src/physics/build | cd build | make
+      run: cmake -S ${{github.workspace}}/src/physics -B ${{github.workspace}}/src/physics/build | cd ${{github.workspace}}/src/physics/build | make
 
     #- name: Test
     #  working-directory: ${{github.workspace}}/build
