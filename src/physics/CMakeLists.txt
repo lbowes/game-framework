@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 
 project(game-framework-physics)
 
-ADD_LIBRARY(game-framework-physics STATIC
+add_library(game-framework-physics STATIC
     src/RigidBodyStateSnapshot.cpp
     src/State.cpp
     src/RigidBodyGroup.cpp
@@ -16,3 +16,7 @@ ADD_LIBRARY(game-framework-physics STATIC
 target_include_directories(game-framework-physics PRIVATE
     include/
 )
+
+set(glm_DIR ../../3rd-party/glm)
+find_package(glm REQUIRED)
+target_link_libraries(game-framework-physics glm::glm)
