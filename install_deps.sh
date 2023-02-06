@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # GLM
-sudo apt-get install libglm-dev
+#sudo apt-get install libglm-dev
