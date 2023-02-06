@@ -20,6 +20,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: Configure git
+      run: |
+        git --version
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+
     - name: Install dependencies
       run: bash ${{github.workspace}}/install_deps.sh
 
