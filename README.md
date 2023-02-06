@@ -14,9 +14,9 @@ int main() {
 
 ## Install
 ```
-> git clone git@github.com:lbowes/game-framework.git
-> cd game-framework
-> ./install_deps.sh
+git clone git@github.com:lbowes/game-framework.git
+cd game-framework
+./install_deps.sh
 ```
 
 <!--
