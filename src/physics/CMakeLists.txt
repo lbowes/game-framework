@@ -17,6 +17,5 @@ target_include_directories(game-framework-physics PRIVATE
     include/
 )
 
-set(glm_DIR ../../3rd-party/glm)
 find_package(glm REQUIRED)
-target_link_libraries(game-framework-physics glm::glm)
+#target_link_libraries(game-framework-physics glm::glm)
