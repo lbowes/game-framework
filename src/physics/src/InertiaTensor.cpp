@@ -1,5 +1,6 @@
 #include "InertiaTensor.h"
 
+
 InertiaTensor::InertiaTensor() :
 	mInternal(glm::dmat3(0.0f)) //Point masses do not have a moment of inertia about their centre of mass
 { }

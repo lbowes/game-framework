@@ -1,10 +1,9 @@
-#ifndef INERTIATENSOR_H
-#define INERTIATENSOR_H
-#pragma once
+#ifndef PHYSICS_INERTIATENSOR_H_
+#define PHYSICS_INERTIATENSOR_H_
 
-#include <glm/mat3x3.hpp>
-#include <glm/geometric.hpp>
+
 #include <glm/gtc/matrix_inverse.hpp>
+
 
 class InertiaTensor {
 private:
@@ -43,4 +42,5 @@ bool operator!=(const InertiaTensor& l, const InertiaTensor& r);
 InertiaTensor operator+(const InertiaTensor& l, const InertiaTensor& r);
 glm::dvec3 operator*(const InertiaTensor& l, const glm::dvec3& r);
 
-#endif
+
+#endif // PHYSICS_INERTIATENSOR_H_
