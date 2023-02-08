@@ -38,6 +38,7 @@ ADD_LIBRARY(game-framework-graphics STATIC
 
 target_include_directories(game-framework-graphics PRIVATE
     include/
+    include/Vendor/ImGui/
 )
 
 # temp - only for testing initial cmake setup
