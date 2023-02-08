@@ -47,8 +47,6 @@ namespace GF {
 		static bool isMouseButtonPressed(unsigned char button);
 		static bool isMouseButtonReleased(unsigned char button);
 
-		static bool isControllerButtonPressed(unsigned char button);
-		static bool isControllerButtonReleased(unsigned char button);
 		static void showCursor();
 		static void hideCursor();
 
@@ -64,7 +62,6 @@ namespace GF {
 		static void setMouseScroll(float newValue) { mMouseScroll = newValue; }
 
 	private:
-		static void loadImGuiKeys();
 		static void setAllCallbacks();
 		static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 		static void scrollCallback(GLFWwindow* window, double xoffset, double yoffset);
