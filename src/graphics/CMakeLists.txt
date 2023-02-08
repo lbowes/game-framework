@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.17)
 project(game-framework-graphics)
 
 ADD_LIBRARY(game-framework-graphics STATIC
