@@ -12,11 +12,9 @@ int main() {
 ```
 -->
 
-## Install
+## Getting Started
 ```
-git clone git@github.com:lbowes/game-framework.git
-cd game-framework
-./install_deps.sh
+todo
 ```
 
 <!--
