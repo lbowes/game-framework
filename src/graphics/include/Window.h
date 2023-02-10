@@ -2,7 +2,7 @@
 #define GF_WINDOW_H
 #pragma once
 
-#include "Vendor/stb_image/stb_image.h"
+#include "vendor/stb_image/stb_image.h"
 
 #define GLEW_STATIC
 #include <GL/glew.h>

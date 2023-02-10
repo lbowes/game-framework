@@ -2,7 +2,7 @@
 #define UTILS_TEXTURELOADER_H
 #pragma once
 
-#include "Vendor/stb_image/stb_image.h"
+#include "vendor/stb_image/stb_image.h"
 
 #include <vector>
 #include <stdio.h>
