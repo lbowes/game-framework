@@ -1,8 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
-
-project(game-framework-physics)
-
-add_library(game-framework-physics STATIC
+set(PHYSICS_SRC
     src/RigidBodyStateSnapshot.cpp
     src/State.cpp
     src/RigidBodyGroup.cpp
@@ -13,6 +9,9 @@ add_library(game-framework-physics STATIC
     src/InertiaTensor.cpp
 )
 
-target_include_directories(game-framework-physics PRIVATE
-    include/
-)
+add_library(game-framework-physics STATIC ${PHYSICS_SRC})
+target_include_directories(game-framework-physics PRIVATE include/)
+set(PHYSICS_HEADERS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+# Tests
+add_subdirectory(test)
